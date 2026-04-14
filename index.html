@@ -4,104 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facila | Feedback Visivo IA per la Riabilitazione Orofacciale</title>
-    
-    <!-- Google Fonts: Inter for a clean, modern, clinical look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS (via CDN for static page) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
-                        }
+                        brand: { 50:'#f0f9ff', 100:'#e0f2fe', 500:'#0ea5e9', 600:'#0284c7', 900:'#0c4a6e' }
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'float-delayed': 'float 6s ease-in-out 3s infinite',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } }
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Language switcher dropdown */
-        .lang-dropdown { display: none; }
+        .lang-dropdown { display: none; position: absolute; right: 0; top: 100%; margin-top: 4px; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.1); padding: 4px 0; min-width: 140px; z-index: 100; }
         .lang-dropdown.open { display: block; }
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-gray-50">
 
-    <!-- Navigation -->
+    <!-- ========== NAVIGATION ========== -->
     <nav class="bg-white shadow-sm fixed w-full z-50 top-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-2">
                     <i class="fa-solid fa-face-smile-beam text-brand-600 text-3xl"></i>
                     <span class="font-bold text-2xl text-brand-900 tracking-tight">Facila</span>
                 </div>
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#about" class="text-gray-600 hover:text-brand-600 font-medium transition" data-i18n="nav_about">Chi siamo</a>
                     <a href="#technology" class="text-gray-600 hover:text-brand-600 font-medium transition" data-i18n="nav_technology">Tecnologia</a>
                     <a href="#benefits" class="text-gray-600 hover:text-brand-600 font-medium transition" data-i18n="nav_benefits">Benefici Clinici</a>
                     <a href="#contact" class="bg-brand-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-brand-500 transition shadow-sm" data-i18n="nav_demo">Richiedi una Demo</a>
-                    
-                    <!-- Language Switcher -->
-                    <div class="lang-wrapper relative">
-                        <button class="lang-toggle flex items-center gap-1.5 text-gray-500 hover:text-brand-600 font-medium transition px-2 py-1 rounded-md hover:bg-gray-50" aria-label="Change language">
+                    <div class="relative">
+                        <button id="langToggleDesktop" class="flex items-center gap-1.5 text-gray-500 hover:text-brand-600 font-medium transition px-2 py-1 rounded-md hover:bg-gray-50">
                             <i class="fa-solid fa-globe text-sm"></i>
-                            <span id="currentLangLabel">IT</span>
+                            <span id="langLabelDesktop">IT</span>
                             <i class="fa-solid fa-chevron-down text-[10px]"></i>
                         </button>
-                        <div class="lang-dropdown absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[140px] z-50">
-                            <button data-lang="de" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
-                            <button data-lang="en" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
-                            <button data-lang="es" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
-                            <button data-lang="fr" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
-                            <button data-lang="it" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
-                            <button data-lang="pt" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
+                        <div class="lang-dropdown" id="langDropDesktop">
+                            <button data-lang="de" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
+                            <button data-lang="en" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
+                            <button data-lang="es" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
+                            <button data-lang="fr" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
+                            <button data-lang="it" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
+                            <button data-lang="pt" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Mobile: lang + hamburger -->
                 <div class="flex md:hidden items-center gap-3">
-                    <div class="lang-wrapper relative">
-                        <button class="lang-toggle flex items-center gap-1 text-gray-500 hover:text-brand-600 font-medium transition px-2 py-1 rounded-md" aria-label="Change language">
+                    <div class="relative">
+                        <button id="langToggleMobile" class="flex items-center gap-1 text-gray-500 hover:text-brand-600 font-medium transition px-2 py-1 rounded-md">
                             <i class="fa-solid fa-globe text-sm"></i>
-                            <span id="currentLangLabelMobile">IT</span>
+                            <span id="langLabelMobile">IT</span>
                         </button>
-                        <div class="lang-dropdown absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[140px] z-50">
-                            <button data-lang="de" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
-                            <button data-lang="en" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
-                            <button data-lang="es" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
-                            <button data-lang="fr" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
-                            <button data-lang="it" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
-                            <button data-lang="pt" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
+                        <div class="lang-dropdown" id="langDropMobile">
+                            <button data-lang="de" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
+                            <button data-lang="en" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
+                            <button data-lang="es" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
+                            <button data-lang="fr" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
+                            <button data-lang="it" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
+                            <button data-lang="pt" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
                         </div>
                     </div>
                 </div>
@@ -109,7 +82,7 @@
         </div>
     </nav>
 
-    <!-- Hero / About Section -->
+    <!-- ========== HERO ========== -->
     <section id="about" class="pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-b from-brand-50 to-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16">
             <div class="lg:w-1/2 relative z-10">
@@ -117,89 +90,63 @@
                     <div class="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></div>
                     <span data-i18n="hero_badge">HealthTech di Nuova Generazione</span>
                 </div>
-                <h1 class="text-4xl lg:text-5xl font-bold text-brand-900 leading-tight mb-6" data-i18n="hero_title">
-                    Feedback Visivo IA per la <span class="text-brand-600">Riabilitazione Orofacciale</span>
-                </h1>
-                <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-i18n="hero_desc">
-                    Facila è una piattaforma di visione artificiale basata sull'IA che fornisce feedback visivo in tempo reale durante le sedute terapeutiche, aiutando i pazienti a comprendere gli esercizi e a restare motivati nel percorso riabilitativo.
-                </p>
+                <h1 class="text-4xl lg:text-5xl font-bold text-brand-900 leading-tight mb-6" data-i18n="hero_title">Feedback Visivo IA per la <span class="text-brand-600">Riabilitazione Orofacciale</span></h1>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-i18n="hero_desc">Facila è una piattaforma di visione artificiale basata sull'IA che fornisce feedback visivo in tempo reale durante le sedute terapeutiche, aiutando i pazienti a comprendere gli esercizi e a restare motivati nel percorso riabilitativo.</p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="bg-brand-600 text-white text-center px-6 py-3 rounded-lg font-medium hover:bg-brand-500 transition shadow-md" data-i18n="hero_cta1">
-                        Collabora con noi
-                    </a>
-                    <a href="#technology" class="bg-white border border-gray-300 text-brand-900 text-center px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition" data-i18n="hero_cta2">
-                        Scopri la Tecnologia
-                    </a>
+                    <a href="#contact" class="bg-brand-600 text-white text-center px-6 py-3 rounded-lg font-medium hover:bg-brand-500 transition shadow-md" data-i18n="hero_cta1">Collabora con noi</a>
+                    <a href="#technology" class="bg-white border border-gray-300 text-brand-900 text-center px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition" data-i18n="hero_cta2">Scopri la Tecnologia</a>
                 </div>
             </div>
-            
-            <!-- Hero Visual -->
             <div class="lg:w-1/2 relative w-full max-w-lg mx-auto lg:max-w-none">
                 <div class="absolute -top-10 -right-10 w-72 h-72 bg-brand-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70"></div>
                 <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70"></div>
-                
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-10">
                     <img src="images/main_img.png" alt="Clinical tablet application" class="w-full h-[400px] object-cover">
                     <div class="absolute inset-0 bg-brand-900/10 mix-blend-multiply"></div>
                 </div>
-
-                <!-- Floating UI Element 1 -->
                 <div class="absolute -left-6 bottom-12 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-gray-100 flex items-center gap-4 z-20 animate-float hidden sm:flex">
-                    <div class="bg-brand-100 p-3 rounded-lg text-brand-600">
-                        <i class="fa-solid fa-face-viewfinder text-2xl"></i>
-                    </div>
+                    <div class="bg-brand-100 p-3 rounded-lg text-brand-600"><i class="fa-solid fa-face-viewfinder text-2xl"></i></div>
                     <div>
                         <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-0.5" data-i18n="float_label1">Analisi IA</p>
                         <p class="text-sm font-bold text-brand-900" data-i18n="float_value1">Mappatura Orofacciale Attiva</p>
                     </div>
                 </div>
-
-                <!-- Floating UI Element 2 -->
                 <div class="absolute -right-6 top-16 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-gray-100 flex items-center gap-3 z-20 animate-float-delayed hidden sm:flex">
                     <div class="relative flex h-3 w-3">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                     </div>
-                    <div>
-                        <p class="text-sm font-bold text-gray-800" data-i18n="float_value2">Feedback Sessione: <span class="text-green-600">Attivo</span></p>
-                    </div>
+                    <div><p class="text-sm font-bold text-gray-800" data-i18n="float_value2">Feedback Sessione: <span class="text-green-600">Attivo</span></p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technology Section -->
+    <!-- ========== TECHNOLOGY ========== -->
     <section id="technology" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-3xl font-bold text-brand-900 mb-4" data-i18n="tech_title">Feedback Visivo in Tempo Reale Durante le Sedute Terapeutiche</h2>
                 <p class="text-gray-600 text-lg" data-i18n="tech_desc">I nostri modelli IA operano in tempo reale durante le sedute di riabilitazione, offrendo a terapisti e pazienti un feedback visivo immediato sull'attività muscolare facciale — direttamente da una telecamera standard.</p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Step 1 -->
                 <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 text-center hover:-translate-y-2 hover:shadow-xl transition duration-300">
                     <div class="w-20 h-20 bg-white shadow-sm border border-gray-100 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl relative">
-                        <i class="fa-solid fa-video"></i>
-                        <div class="absolute -bottom-1 -right-1 bg-brand-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">1</div>
+                        <i class="fa-solid fa-video"></i><div class="absolute -bottom-1 -right-1 bg-brand-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">1</div>
                     </div>
                     <h3 class="text-xl font-bold text-brand-900 mb-3" data-i18n="step1_title">Video Standard</h3>
                     <p class="text-gray-600" data-i18n="step1_desc">Nessun hardware specializzato. Acquisizione dei movimenti facciali e articolatori del paziente con registrazioni video standard da qualsiasi dispositivo.</p>
                 </div>
-                <!-- Step 2 -->
                 <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 text-center hover:-translate-y-2 hover:shadow-xl transition duration-300">
                     <div class="w-20 h-20 bg-white shadow-sm border border-gray-100 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl relative">
-                        <i class="fa-solid fa-microchip"></i>
-                        <div class="absolute -bottom-1 -right-1 bg-brand-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">2</div>
+                        <i class="fa-solid fa-microchip"></i><div class="absolute -bottom-1 -right-1 bg-brand-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">2</div>
                     </div>
                     <h3 class="text-xl font-bold text-brand-900 mb-3" data-i18n="step2_title">Modelli IA Avanzati</h3>
                     <p class="text-gray-600" data-i18n="step2_desc">La nostra tecnologia proprietaria di visione artificiale elabora il video, tracciando con precisione le funzioni motorie facciali e articolatorie microscopiche.</p>
                 </div>
-                <!-- Step 3 -->
                 <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 text-center hover:-translate-y-2 hover:shadow-xl transition duration-300">
                     <div class="w-20 h-20 bg-white shadow-sm border border-gray-100 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl relative">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <div class="absolute -bottom-1 -right-1 bg-brand-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">3</div>
+                        <i class="fa-solid fa-chart-line"></i><div class="absolute -bottom-1 -right-1 bg-brand-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">3</div>
                     </div>
                     <h3 class="text-xl font-bold text-brand-900 mb-3" data-i18n="step3_title">Feedback in Tempo Reale</h3>
                     <p class="text-gray-600" data-i18n="step3_desc">Terapisti e pazienti vedono visualizzazioni in tempo reale dell'attività muscolare durante gli esercizi, migliorando comprensione, coinvolgimento e motivazione ad ogni seduta.</p>
@@ -208,57 +155,38 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
+    <!-- ========== BENEFITS ========== -->
     <section id="benefits" class="py-24 relative text-white bg-brand-900 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Laboratory Background" class="w-full h-full object-cover opacity-10">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="" class="w-full h-full object-cover opacity-10">
             <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/95 to-brand-800/90"></div>
         </div>
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
                 <div class="lg:w-1/3">
-                    <div class="inline-block bg-white/10 border border-white/20 text-brand-100 px-3 py-1 rounded-full text-sm font-semibold mb-6" data-i18n="benefits_badge">
-                        Integrazione Clinica
-                    </div>
+                    <div class="inline-block bg-white/10 border border-white/20 text-brand-100 px-3 py-1 rounded-full text-sm font-semibold mb-6" data-i18n="benefits_badge">Integrazione Clinica</div>
                     <h2 class="text-3xl lg:text-4xl font-bold mb-6" data-i18n="benefits_title">Progettato in Collaborazione con i Clinici</h2>
-                    <p class="text-brand-100 text-lg mb-8 leading-relaxed" data-i18n="benefits_desc">
-                        Pensato per ospedali, cliniche e studi privati, Facila potenzia le sedute di riabilitazione fornendo feedback visivo che aiuta i pazienti a comprendere gli esercizi e a restare coinvolti nel proprio percorso di recupero.
-                    </p>
-                    <a href="#contact" class="inline-flex items-center gap-2 text-white font-medium border-b-2 border-brand-500 hover:text-brand-500 transition pb-1">
-                        <span data-i18n="benefits_cta">Inizia oggi</span> <i class="fa-solid fa-arrow-right text-sm"></i>
-                    </a>
+                    <p class="text-brand-100 text-lg mb-8 leading-relaxed" data-i18n="benefits_desc">Pensato per ospedali, cliniche e studi privati, Facila potenzia le sedute di riabilitazione fornendo feedback visivo che aiuta i pazienti a comprendere gli esercizi e a restare coinvolti nel proprio percorso di recupero.</p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-white font-medium border-b-2 border-brand-500 hover:text-brand-500 transition pb-1"><span data-i18n="benefits_cta">Inizia oggi</span> <i class="fa-solid fa-arrow-right text-sm"></i></a>
                 </div>
                 <div class="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <!-- Card 1 -->
                     <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md border border-white/10 hover:bg-white/15 transition duration-300">
-                        <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center mb-5">
-                            <i class="fa-solid fa-eye text-brand-300 text-xl"></i>
-                        </div>
+                        <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center mb-5"><i class="fa-solid fa-eye text-brand-300 text-xl"></i></div>
                         <h4 class="text-xl font-bold mb-3 text-white" data-i18n="card1_title">Comprensione del Paziente</h4>
                         <p class="text-brand-100/80 text-sm leading-relaxed" data-i18n="card1_desc">Il feedback visivo in tempo reale aiuta i pazienti a vedere e comprendere esattamente quali muscoli stanno attivando, rendendo gli esercizi più chiari e intuitivi durante le sedute.</p>
                     </div>
-                    <!-- Card 2 -->
                     <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md border border-white/10 hover:bg-white/15 transition duration-300">
-                        <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center mb-5">
-                            <i class="fa-solid fa-network-wired text-brand-300 text-xl"></i>
-                        </div>
+                        <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center mb-5"><i class="fa-solid fa-network-wired text-brand-300 text-xl"></i></div>
                         <h4 class="text-xl font-bold mb-3 text-white" data-i18n="card2_title">Ottimizzazione del Flusso di Lavoro</h4>
                         <p class="text-brand-100/80 text-sm leading-relaxed" data-i18n="card2_desc">L'analisi automatizzata fa risparmiare tempo clinico prezioso, consentendo ai professionisti di concentrarsi sulla cura del paziente anziché sulla documentazione manuale.</p>
                     </div>
-                    <!-- Card 3 -->
                     <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md border border-white/10 hover:bg-white/15 transition duration-300">
-                        <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center mb-5">
-                            <i class="fa-solid fa-comments text-brand-300 text-xl"></i>
-                        </div>
+                        <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center mb-5"><i class="fa-solid fa-comments text-brand-300 text-xl"></i></div>
                         <h4 class="text-xl font-bold mb-3 text-white" data-i18n="card3_title">Comunicazione più Chiara</h4>
                         <p class="text-brand-100/80 text-sm leading-relaxed" data-i18n="card3_desc">Report visivi e facilmente comprensibili facilitano una comunicazione migliore tra i team di cura multidisciplinari.</p>
                     </div>
-                    <!-- Card 4 -->
                     <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md border border-white/10 hover:bg-white/15 transition duration-300">
-                        <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center mb-5">
-                            <i class="fa-solid fa-hand-holding-medical text-brand-300 text-xl"></i>
-                        </div>
+                        <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center mb-5"><i class="fa-solid fa-hand-holding-medical text-brand-300 text-xl"></i></div>
                         <h4 class="text-xl font-bold mb-3 text-white" data-i18n="card4_title">Motivazione del Paziente</h4>
                         <p class="text-brand-100/80 text-sm leading-relaxed" data-i18n="card4_desc">Vedere la propria attività muscolare facciale in tempo reale mantiene i pazienti motivati e attivamente coinvolti durante le sedute terapeutiche, rafforzando i progressi e incoraggiando l'impegno.</p>
                     </div>
@@ -267,500 +195,283 @@
         </div>
     </section>
 
-    <!-- CTA / Contact Section -->
+    <!-- ========== CONTACT ========== -->
     <section id="contact" class="py-24 bg-brand-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-bold text-brand-900 mb-6" data-i18n="cta_title">Pronto a migliorare le tue sedute di riabilitazione?</h2>
-            <p class="text-gray-600 text-lg mb-10" data-i18n="cta_desc">
-                Unisciti alle cliniche e ai centri di riabilitazione che stanno rivoluzionando la terapia orofacciale con il feedback visivo basato sull'IA in tempo reale.
-            </p>
-            <!-- Contact email -->
+            <p class="text-gray-600 text-lg mb-10" data-i18n="cta_desc">Unisciti alle cliniche e ai centri di riabilitazione che stanno rivoluzionando la terapia orofacciale con il feedback visivo basato sull'IA in tempo reale.</p>
             <p class="text-gray-500 text-sm mb-8"><span data-i18n="contact_or">Oppure scrivici direttamente a</span> <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a></p>
-
-            <!-- Form (visible state) -->
-            <form id="contactForm" action="https://formsubmit.co/facilaiss@gmail.com" method="POST" class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 max-w-lg mx-auto text-left">
-                <!-- Formsubmit config -->
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_subject" value="Facila — New Demo Request">
-                <input type="hidden" name="_next" id="formNext" value="">
-                <input type="text" name="_honey" style="display:none">
-
+            <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 max-w-lg mx-auto text-left">
                 <div class="mb-5">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name" data-i18n="form_name">Nome Completo</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="name" name="Name" type="text" required data-i18n-placeholder="form_name_ph" placeholder="Dr. Mario Rossi">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" data-i18n="form_name">Nome Completo</label>
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="fieldName" type="text" data-i18n-placeholder="form_name_ph" placeholder="Dr. Mario Rossi">
                 </div>
                 <div class="mb-5">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email" data-i18n="form_email">Email Professionale</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="email" name="Email" type="email" required data-i18n-placeholder="form_email_ph" placeholder="mario@ospedale.it">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" data-i18n="form_email">Email Professionale</label>
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="fieldEmail" type="email" data-i18n-placeholder="form_email_ph" placeholder="mario@ospedale.it">
                 </div>
                 <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="organization" data-i18n="form_org">Organizzazione / Clinica</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="organization" name="Organization" type="text" data-i18n-placeholder="form_org_ph" placeholder="Centro Medico Generale">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" data-i18n="form_org">Organizzazione / Clinica</label>
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="fieldOrg" type="text" data-i18n-placeholder="form_org_ph" placeholder="Centro Medico Generale">
                 </div>
-                <button class="w-full bg-brand-600 text-white font-bold py-3.5 px-4 rounded-xl hover:bg-brand-500 transition shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-200" type="submit" id="submitBtn" data-i18n="form_submit">
-                    Richiedi una Demo
-                </button>
+                <button id="sendBtn" class="w-full bg-brand-600 text-white font-bold py-3.5 px-4 rounded-xl hover:bg-brand-500 transition shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-200" type="button" data-i18n="form_submit">Richiedi una Demo</button>
                 <p class="text-xs text-gray-400 mt-5 text-center" data-i18n="form_privacy">I tuoi dati sono al sicuro. Consulta la nostra <a href="#" class="underline hover:text-gray-600">Privacy Policy</a>.</p>
-            </form>
-
-            <!-- Success message (hidden by default, shown when ?sent=1 in URL) -->
-            <div id="formSuccess" class="hidden bg-white p-8 rounded-3xl shadow-xl border border-gray-100 max-w-lg mx-auto text-center">
-                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
-                    <i class="fa-solid fa-check text-green-600 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-brand-900 mb-3" data-i18n="form_success_title">Richiesta Inviata!</h3>
-                <p class="text-gray-600" data-i18n="form_success_desc">Grazie per il tuo interesse. Ti contatteremo al più presto.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ========== FOOTER ========== -->
     <footer class="bg-white border-t border-gray-200 py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-face-smile-beam text-brand-600 text-2xl"></i>
                 <span class="font-bold text-xl text-brand-900 tracking-tight">Facila</span>
             </div>
-            
-            <p class="text-gray-500 text-sm text-center md:text-left" data-i18n="footer_copy">
-                &copy; 2026 Facila HealthTech. Tutti i diritti riservati.
-            </p>
-            
+            <p class="text-gray-500 text-sm text-center md:text-left" data-i18n="footer_copy">&copy; 2026 Facila HealthTech. Tutti i diritti riservati.</p>
             <div class="flex space-x-6">
-                <a href="https://www.linkedin.com/company/facilatech" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-brand-600 transition" aria-label="LinkedIn">
-                    <i class="fa-brands fa-linkedin text-xl"></i>
-                </a>
-                <a href="https://www.instagram.com/facila.tech/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-brand-600 transition" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </a>
+                <a href="https://www.linkedin.com/company/facilatech" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-brand-600 transition" aria-label="LinkedIn"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                <a href="https://www.instagram.com/facila.tech/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-brand-600 transition" aria-label="Instagram"><i class="fa-brands fa-instagram text-xl"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- ===== i18n & Form Logic ===== -->
-    <script>
-    const translations = {
-        it: {
-            nav_about: "Chi siamo",
-            nav_technology: "Tecnologia",
-            nav_benefits: "Benefici Clinici",
-            nav_demo: "Richiedi una Demo",
-            hero_badge: "HealthTech di Nuova Generazione",
-            hero_title: 'Feedback Visivo IA per la <span class="text-brand-600">Riabilitazione Orofacciale</span>',
-            hero_desc: "Facila è una piattaforma di visione artificiale basata sull'IA che fornisce feedback visivo in tempo reale durante le sedute terapeutiche, aiutando i pazienti a comprendere gli esercizi e a restare motivati nel percorso riabilitativo.",
-            hero_cta1: "Collabora con noi",
-            hero_cta2: "Scopri la Tecnologia",
-            float_label1: "Analisi IA",
-            float_value1: "Mappatura Orofacciale Attiva",
-            float_value2: 'Feedback Sessione: <span class="text-green-600">Attivo</span>',
-            tech_title: "Feedback Visivo in Tempo Reale Durante le Sedute Terapeutiche",
-            tech_desc: "I nostri modelli IA operano in tempo reale durante le sedute di riabilitazione, offrendo a terapisti e pazienti un feedback visivo immediato sull'attività muscolare facciale — direttamente da una telecamera standard.",
-            step1_title: "Video Standard",
-            step1_desc: "Nessun hardware specializzato. Acquisizione dei movimenti facciali e articolatori del paziente con registrazioni video standard da qualsiasi dispositivo.",
-            step2_title: "Modelli IA Avanzati",
-            step2_desc: "La nostra tecnologia proprietaria di visione artificiale elabora il video, tracciando con precisione le funzioni motorie facciali e articolatorie microscopiche.",
-            step3_title: "Feedback in Tempo Reale",
-            step3_desc: "Terapisti e pazienti vedono visualizzazioni in tempo reale dell'attività muscolare durante gli esercizi, migliorando comprensione, coinvolgimento e motivazione ad ogni seduta.",
-            benefits_badge: "Integrazione Clinica",
-            benefits_title: "Progettato in Collaborazione con i Clinici",
-            benefits_desc: "Pensato per ospedali, cliniche e studi privati, Facila potenzia le sedute di riabilitazione fornendo feedback visivo che aiuta i pazienti a comprendere gli esercizi e a restare coinvolti nel proprio percorso di recupero.",
-            benefits_cta: "Inizia oggi",
-            card1_title: "Comprensione del Paziente",
-            card1_desc: "Il feedback visivo in tempo reale aiuta i pazienti a vedere e comprendere esattamente quali muscoli stanno attivando, rendendo gli esercizi più chiari e intuitivi durante le sedute.",
-            card2_title: "Ottimizzazione del Flusso di Lavoro",
-            card2_desc: "L'analisi automatizzata fa risparmiare tempo clinico prezioso, consentendo ai professionisti di concentrarsi sulla cura del paziente anziché sulla documentazione manuale.",
-            card3_title: "Comunicazione più Chiara",
-            card3_desc: "Report visivi e facilmente comprensibili facilitano una comunicazione migliore tra i team di cura multidisciplinari.",
-            card4_title: "Motivazione del Paziente",
-            card4_desc: "Vedere la propria attività muscolare facciale in tempo reale mantiene i pazienti motivati e attivamente coinvolti durante le sedute terapeutiche, rafforzando i progressi e incoraggiando l'impegno.",
-            cta_title: "Pronto a migliorare le tue sedute di riabilitazione?",
-            cta_desc: "Unisciti alle cliniche e ai centri di riabilitazione che stanno rivoluzionando la terapia orofacciale con il feedback visivo basato sull'IA in tempo reale.",
-            form_name: "Nome Completo",
-            form_name_ph: "Dr. Mario Rossi",
-            form_email: "Email Professionale",
-            form_email_ph: "mario@ospedale.it",
-            form_org: "Organizzazione / Clinica",
-            form_org_ph: "Centro Medico Generale",
-            form_submit: "Richiedi una Demo",
-            form_privacy: 'I tuoi dati sono al sicuro. Consulta la nostra <a href="#" class="underline hover:text-gray-600">Privacy Policy</a>.',
-            footer_copy: "&copy; 2026 Facila HealthTech. Tutti i diritti riservati.",
-            mail_subject: "Richiesta Demo Facila",
-            mail_body_name: "Nome",
-            mail_body_email: "Email",
-            mail_body_org: "Organizzazione",
-            contact_or: "Oppure scrivici direttamente a",
-            form_success_title: "Richiesta Inviata!",
-            form_success_desc: "Grazie per il tuo interesse. Ti contatteremo al più presto.",
-            form_error_title: "Errore di Invio",
-            form_error_desc: 'Si è verificato un problema. Per favore scrivici direttamente a <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
-            form_error_retry: "Riprova",
-        },
-            nav_about: "About",
-            nav_technology: "Technology",
-            nav_benefits: "Clinical Benefits",
-            nav_demo: "Request Demo",
-            hero_badge: "Next-Generation HealthTech",
-            hero_title: 'AI-Powered Visual Feedback for <span class="text-brand-600">Orofacial Rehabilitation</span>',
-            hero_desc: "Facila is an AI-driven computer vision platform that provides real-time visual feedback during therapy sessions, helping patients understand their exercises and stay motivated throughout their rehabilitation journey.",
-            hero_cta1: "Partner with us",
-            hero_cta2: "Discover the Tech",
-            float_label1: "AI Analysis",
-            float_value1: "Orofacial Mapping Active",
-            float_value2: 'Session Feedback: <span class="text-green-600">Active</span>',
-            tech_title: "Real-Time Visual Feedback During Therapy Sessions",
-            tech_desc: "Our AI models work in real time during rehabilitation sessions, giving therapists and patients instant visual feedback on facial muscle activity — directly from a standard camera.",
-            step1_title: "Standard Video",
-            step1_desc: "No specialized hardware required. Capture patient facial and articulatory movement using standard video recordings from any device.",
-            step2_title: "Advanced AI Models",
-            step2_desc: "Our proprietary computer vision technology processes the video, precisely tracking microscopic facial and articulatory motor functions.",
-            step3_title: "Live Session Feedback",
-            step3_desc: "Therapists and patients see real-time visualizations of muscle activity during exercises, improving understanding, engagement, and motivation throughout each session.",
-            benefits_badge: "Clinical Integration",
-            benefits_title: "Designed in Collaboration with Clinicians",
-            benefits_desc: "Built for hospitals, clinics, and private practices, Facila enhances rehabilitation sessions by providing visual feedback that helps patients understand their exercises and stay engaged in their recovery.",
-            benefits_cta: "Get started today",
-            card1_title: "Patient Comprehension",
-            card1_desc: "Real-time visual feedback helps patients see and understand exactly which muscles they are activating, making exercises clearer and more intuitive during sessions.",
-            card2_title: "Streamlines Workflows",
-            card2_desc: "Automated analysis saves valuable clinical time, allowing practitioners to focus on patient care rather than manual documentation.",
-            card3_title: "Clearer Communication",
-            card3_desc: "Visual, easy-to-understand data reports facilitate better communication between multidisciplinary care teams.",
-            card4_title: "Patient Motivation",
-            card4_desc: "Seeing their own facial muscle activity in real time keeps patients motivated and actively engaged during therapy sessions, reinforcing progress and encouraging continued effort.",
-            cta_title: "Ready to enhance your rehabilitation sessions?",
-            cta_desc: "Join the clinics and rehabilitation centers pioneering the future of orofacial therapy with real-time AI-powered visual feedback.",
-            form_name: "Full Name",
-            form_name_ph: "Dr. Jane Doe",
-            form_email: "Work Email",
-            form_email_ph: "jane@hospital.org",
-            form_org: "Organization / Clinic",
-            form_org_ph: "General Medical Center",
-            form_submit: "Request a Demo",
-            form_privacy: 'We care about your data. See our <a href="#" class="underline hover:text-gray-600">Privacy Policy</a>.',
-            footer_copy: "&copy; 2026 Facila HealthTech. All rights reserved.",
-            mail_subject: "Facila Demo Request",
-            mail_body_name: "Name",
-            mail_body_email: "Email",
-            mail_body_org: "Organization",
-            contact_or: "Or write to us directly at",
-            form_success_title: "Request Sent!",
-            form_success_desc: "Thank you for your interest. We will get back to you shortly.",
-            form_error_title: "Submission Error",
-            form_error_desc: 'Something went wrong. Please write to us directly at <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
-            form_error_retry: "Try again",
-        },
-        fr: {
-            nav_about: "À propos",
-            nav_technology: "Technologie",
-            nav_benefits: "Bénéfices Cliniques",
-            nav_demo: "Demander une Démo",
-            hero_badge: "HealthTech Nouvelle Génération",
-            hero_title: 'Feedback Visuel IA pour la <span class="text-brand-600">Rééducation Orofaciale</span>',
-            hero_desc: "Facila est une plateforme de vision par ordinateur basée sur l'IA qui fournit un feedback visuel en temps réel pendant les séances de thérapie, aidant les patients à comprendre leurs exercices et à rester motivés tout au long de leur parcours de rééducation.",
-            hero_cta1: "Collaborer avec nous",
-            hero_cta2: "Découvrir la Technologie",
-            float_label1: "Analyse IA",
-            float_value1: "Cartographie Orofaciale Active",
-            float_value2: 'Feedback Séance : <span class="text-green-600">Actif</span>',
-            tech_title: "Feedback Visuel en Temps Réel Pendant les Séances de Thérapie",
-            tech_desc: "Nos modèles IA fonctionnent en temps réel pendant les séances de rééducation, offrant aux thérapeutes et aux patients un feedback visuel instantané sur l'activité musculaire faciale — directement depuis une caméra standard.",
-            step1_title: "Vidéo Standard",
-            step1_desc: "Aucun matériel spécialisé requis. Captez les mouvements faciaux et articulatoires du patient avec des enregistrements vidéo standard depuis n'importe quel appareil.",
-            step2_title: "Modèles IA Avancés",
-            step2_desc: "Notre technologie propriétaire de vision par ordinateur traite la vidéo, suivant avec précision les fonctions motrices faciales et articulatoires microscopiques.",
-            step3_title: "Feedback en Temps Réel",
-            step3_desc: "Thérapeutes et patients voient en temps réel les visualisations de l'activité musculaire pendant les exercices, améliorant la compréhension, l'engagement et la motivation à chaque séance.",
-            benefits_badge: "Intégration Clinique",
-            benefits_title: "Conçu en Collaboration avec les Cliniciens",
-            benefits_desc: "Pensé pour les hôpitaux, cliniques et cabinets privés, Facila enrichit les séances de rééducation grâce à un feedback visuel qui aide les patients à comprendre leurs exercices et à rester impliqués dans leur guérison.",
-            benefits_cta: "Commencez aujourd'hui",
-            card1_title: "Compréhension du Patient",
-            card1_desc: "Le feedback visuel en temps réel aide les patients à voir et comprendre exactement quels muscles ils activent, rendant les exercices plus clairs et intuitifs pendant les séances.",
-            card2_title: "Optimisation du Flux de Travail",
-            card2_desc: "L'analyse automatisée fait gagner un temps clinique précieux, permettant aux praticiens de se concentrer sur les soins aux patients plutôt que sur la documentation manuelle.",
-            card3_title: "Communication plus Claire",
-            card3_desc: "Des rapports visuels et faciles à comprendre facilitent une meilleure communication entre les équipes de soins pluridisciplinaires.",
-            card4_title: "Motivation du Patient",
-            card4_desc: "Voir leur propre activité musculaire faciale en temps réel maintient les patients motivés et activement engagés pendant les séances de thérapie, renforçant les progrès et encourageant l'effort continu.",
-            cta_title: "Prêt à améliorer vos séances de rééducation ?",
-            cta_desc: "Rejoignez les cliniques et centres de rééducation qui révolutionnent la thérapie orofaciale avec le feedback visuel IA en temps réel.",
-            form_name: "Nom Complet",
-            form_name_ph: "Dr. Jean Dupont",
-            form_email: "Email Professionnel",
-            form_email_ph: "jean@hopital.fr",
-            form_org: "Organisation / Clinique",
-            form_org_ph: "Centre Médical Général",
-            form_submit: "Demander une Démo",
-            form_privacy: 'Vos données sont protégées. Consultez notre <a href="#" class="underline hover:text-gray-600">Politique de Confidentialité</a>.',
-            footer_copy: "&copy; 2026 Facila HealthTech. Tous droits réservés.",
-            mail_subject: "Demande de Démo Facila",
-            mail_body_name: "Nom",
-            mail_body_email: "Email",
-            mail_body_org: "Organisation",
-            contact_or: "Ou écrivez-nous directement à",
-            form_success_title: "Demande Envoyée !",
-            form_success_desc: "Merci pour votre intérêt. Nous vous recontacterons très prochainement.",
-            form_error_title: "Erreur d'Envoi",
-            form_error_desc: 'Un problème est survenu. Veuillez nous écrire directement à <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
-            form_error_retry: "Réessayer",
-        },
-        de: {
-            nav_about: "Über uns",
-            nav_technology: "Technologie",
-            nav_benefits: "Klinische Vorteile",
-            nav_demo: "Demo Anfordern",
-            hero_badge: "HealthTech der nächsten Generation",
-            hero_title: 'KI-gestütztes visuelles Feedback für die <span class="text-brand-600">orofaziale Rehabilitation</span>',
-            hero_desc: "Facila ist eine KI-gestützte Computer-Vision-Plattform, die während der Therapiesitzungen visuelles Echtzeit-Feedback liefert und Patienten hilft, ihre Übungen zu verstehen und während des gesamten Rehabilitationsverlaufs motiviert zu bleiben.",
-            hero_cta1: "Partner werden",
-            hero_cta2: "Technologie entdecken",
-            float_label1: "KI-Analyse",
-            float_value1: "Orofaziale Kartierung Aktiv",
-            float_value2: 'Sitzungs-Feedback: <span class="text-green-600">Aktiv</span>',
-            tech_title: "Visuelles Echtzeit-Feedback Während der Therapiesitzungen",
-            tech_desc: "Unsere KI-Modelle arbeiten in Echtzeit während der Rehabilitationssitzungen und bieten Therapeuten und Patienten sofortiges visuelles Feedback zur Gesichtsmuskelaktivität — direkt von einer Standardkamera.",
-            step1_title: "Standardvideo",
-            step1_desc: "Keine spezielle Hardware erforderlich. Erfassung der Gesichts- und Artikulationsbewegungen des Patienten mit Standard-Videoaufnahmen von jedem Gerät.",
-            step2_title: "Fortschrittliche KI-Modelle",
-            step2_desc: "Unsere proprietäre Computer-Vision-Technologie verarbeitet das Video und verfolgt präzise die mikroskopischen Gesichts- und Artikulationsmotorfunktionen.",
-            step3_title: "Echtzeit-Feedback",
-            step3_desc: "Therapeuten und Patienten sehen Echtzeit-Visualisierungen der Muskelaktivität während der Übungen, was Verständnis, Engagement und Motivation in jeder Sitzung verbessert.",
-            benefits_badge: "Klinische Integration",
-            benefits_title: "In Zusammenarbeit mit Klinikern Entwickelt",
-            benefits_desc: "Entwickelt für Krankenhäuser, Kliniken und Privatpraxen — Facila verbessert Rehabilitationssitzungen durch visuelles Feedback, das Patienten hilft, ihre Übungen zu verstehen und engagiert zu bleiben.",
-            benefits_cta: "Heute starten",
-            card1_title: "Patientenverständnis",
-            card1_desc: "Visuelles Echtzeit-Feedback hilft Patienten zu sehen und zu verstehen, welche Muskeln sie genau aktivieren, wodurch Übungen klarer und intuitiver werden.",
-            card2_title: "Workflow-Optimierung",
-            card2_desc: "Automatisierte Analyse spart wertvolle klinische Zeit und ermöglicht es Ärzten, sich auf die Patientenversorgung statt auf manuelle Dokumentation zu konzentrieren.",
-            card3_title: "Klarere Kommunikation",
-            card3_desc: "Visuelle, leicht verständliche Datenberichte erleichtern die Kommunikation zwischen multidisziplinären Betreuungsteams.",
-            card4_title: "Patientenmotivation",
-            card4_desc: "Die eigene Gesichtsmuskelaktivität in Echtzeit zu sehen, hält Patienten motiviert und aktiv engagiert während der Therapiesitzungen.",
-            cta_title: "Bereit, Ihre Rehabilitationssitzungen zu verbessern?",
-            cta_desc: "Schließen Sie sich den Kliniken und Rehabilitationszentren an, die die Zukunft der orofazialen Therapie mit KI-gestütztem Echtzeit-Feedback gestalten.",
-            form_name: "Vollständiger Name",
-            form_name_ph: "Dr. Hans Müller",
-            form_email: "Berufliche E-Mail",
-            form_email_ph: "hans@klinik.de",
-            form_org: "Organisation / Klinik",
-            form_org_ph: "Allgemeines Medizinisches Zentrum",
-            form_submit: "Demo Anfordern",
-            form_privacy: 'Ihre Daten sind sicher. Lesen Sie unsere <a href="#" class="underline hover:text-gray-600">Datenschutzrichtlinie</a>.',
-            footer_copy: "&copy; 2026 Facila HealthTech. Alle Rechte vorbehalten.",
-            mail_subject: "Facila Demo-Anfrage",
-            mail_body_name: "Name",
-            mail_body_email: "E-Mail",
-            mail_body_org: "Organisation",
-            contact_or: "Oder schreiben Sie uns direkt an",
-            form_success_title: "Anfrage Gesendet!",
-            form_success_desc: "Vielen Dank für Ihr Interesse. Wir werden uns in Kürze bei Ihnen melden.",
-            form_error_title: "Übermittlungsfehler",
-            form_error_desc: 'Es ist ein Problem aufgetreten. Bitte schreiben Sie uns direkt an <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
-            form_error_retry: "Erneut versuchen",
-        },
-        es: {
-            nav_about: "Acerca de",
-            nav_technology: "Tecnología",
-            nav_benefits: "Beneficios Clínicos",
-            nav_demo: "Solicitar Demo",
-            hero_badge: "HealthTech de Nueva Generación",
-            hero_title: 'Feedback Visual con IA para la <span class="text-brand-600">Rehabilitación Orofacial</span>',
-            hero_desc: "Facila es una plataforma de visión artificial impulsada por IA que proporciona retroalimentación visual en tiempo real durante las sesiones de terapia, ayudando a los pacientes a comprender sus ejercicios y mantenerse motivados a lo largo de su rehabilitación.",
-            hero_cta1: "Colabora con nosotros",
-            hero_cta2: "Descubre la Tecnología",
-            float_label1: "Análisis IA",
-            float_value1: "Mapeo Orofacial Activo",
-            float_value2: 'Feedback Sesión: <span class="text-green-600">Activo</span>',
-            tech_title: "Feedback Visual en Tiempo Real Durante las Sesiones de Terapia",
-            tech_desc: "Nuestros modelos de IA funcionan en tiempo real durante las sesiones de rehabilitación, ofreciendo a terapeutas y pacientes un feedback visual instantáneo sobre la actividad muscular facial — directamente desde una cámara estándar.",
-            step1_title: "Video Estándar",
-            step1_desc: "Sin hardware especializado. Captura los movimientos faciales y articulatorios del paciente con grabaciones de video estándar desde cualquier dispositivo.",
-            step2_title: "Modelos IA Avanzados",
-            step2_desc: "Nuestra tecnología propietaria de visión artificial procesa el video, rastreando con precisión las funciones motoras faciales y articulatorias microscópicas.",
-            step3_title: "Feedback en Tiempo Real",
-            step3_desc: "Terapeutas y pacientes ven visualizaciones en tiempo real de la actividad muscular durante los ejercicios, mejorando la comprensión, el compromiso y la motivación en cada sesión.",
-            benefits_badge: "Integración Clínica",
-            benefits_title: "Diseñado en Colaboración con los Clínicos",
-            benefits_desc: "Pensado para hospitales, clínicas y consultorios privados, Facila mejora las sesiones de rehabilitación proporcionando feedback visual que ayuda a los pacientes a comprender sus ejercicios y mantenerse comprometidos con su recuperación.",
-            benefits_cta: "Empieza hoy",
-            card1_title: "Comprensión del Paciente",
-            card1_desc: "El feedback visual en tiempo real ayuda a los pacientes a ver y comprender exactamente qué músculos están activando, haciendo los ejercicios más claros e intuitivos durante las sesiones.",
-            card2_title: "Optimización del Flujo de Trabajo",
-            card2_desc: "El análisis automatizado ahorra tiempo clínico valioso, permitiendo a los profesionales centrarse en la atención al paciente en lugar de la documentación manual.",
-            card3_title: "Comunicación más Clara",
-            card3_desc: "Informes visuales y fáciles de entender facilitan una mejor comunicación entre equipos de atención multidisciplinarios.",
-            card4_title: "Motivación del Paciente",
-            card4_desc: "Ver su propia actividad muscular facial en tiempo real mantiene a los pacientes motivados y activamente comprometidos durante las sesiones de terapia, reforzando el progreso y fomentando el esfuerzo continuo.",
-            cta_title: "¿Listo para mejorar tus sesiones de rehabilitación?",
-            cta_desc: "Únete a las clínicas y centros de rehabilitación que están revolucionando la terapia orofacial con feedback visual IA en tiempo real.",
-            form_name: "Nombre Completo",
-            form_name_ph: "Dr. María García",
-            form_email: "Email Profesional",
-            form_email_ph: "maria@hospital.es",
-            form_org: "Organización / Clínica",
-            form_org_ph: "Centro Médico General",
-            form_submit: "Solicitar una Demo",
-            form_privacy: 'Tus datos están seguros. Consulta nuestra <a href="#" class="underline hover:text-gray-600">Política de Privacidad</a>.',
-            footer_copy: "&copy; 2026 Facila HealthTech. Todos los derechos reservados.",
-            mail_subject: "Solicitud de Demo Facila",
-            mail_body_name: "Nombre",
-            mail_body_email: "Email",
-            mail_body_org: "Organización",
-            contact_or: "O escríbenos directamente a",
-            form_success_title: "¡Solicitud Enviada!",
-            form_success_desc: "Gracias por tu interés. Nos pondremos en contacto contigo pronto.",
-            form_error_title: "Error de Envío",
-            form_error_desc: 'Ha ocurrido un problema. Por favor escríbenos directamente a <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
-            form_error_retry: "Reintentar",
-        },
-        pt: {
-            nav_about: "Sobre",
-            nav_technology: "Tecnologia",
-            nav_benefits: "Benefícios Clínicos",
-            nav_demo: "Solicitar Demo",
-            hero_badge: "HealthTech de Nova Geração",
-            hero_title: 'Feedback Visual com IA para a <span class="text-brand-600">Reabilitação Orofacial</span>',
-            hero_desc: "Facila é uma plataforma de visão computacional baseada em IA que fornece feedback visual em tempo real durante as sessões de terapia, ajudando os pacientes a compreender os exercícios e a manterem-se motivados ao longo do percurso de reabilitação.",
-            hero_cta1: "Colabore connosco",
-            hero_cta2: "Descubra a Tecnologia",
-            float_label1: "Análise IA",
-            float_value1: "Mapeamento Orofacial Ativo",
-            float_value2: 'Feedback Sessão: <span class="text-green-600">Ativo</span>',
-            tech_title: "Feedback Visual em Tempo Real Durante as Sessões de Terapia",
-            tech_desc: "Os nossos modelos de IA funcionam em tempo real durante as sessões de reabilitação, oferecendo a terapeutas e pacientes feedback visual instantâneo sobre a atividade muscular facial — diretamente a partir de uma câmara padrão.",
-            step1_title: "Vídeo Padrão",
-            step1_desc: "Sem hardware especializado. Capte os movimentos faciais e articulatórios do paciente com gravações de vídeo padrão a partir de qualquer dispositivo.",
-            step2_title: "Modelos IA Avançados",
-            step2_desc: "A nossa tecnologia proprietária de visão computacional processa o vídeo, rastreando com precisão as funções motoras faciais e articulatórias microscópicas.",
-            step3_title: "Feedback em Tempo Real",
-            step3_desc: "Terapeutas e pacientes veem visualizações em tempo real da atividade muscular durante os exercícios, melhorando a compreensão, o envolvimento e a motivação em cada sessão.",
-            benefits_badge: "Integração Clínica",
-            benefits_title: "Concebido em Colaboração com os Clínicos",
-            benefits_desc: "Pensado para hospitais, clínicas e consultórios privados, Facila enriquece as sessões de reabilitação com feedback visual que ajuda os pacientes a compreender os exercícios e a manterem-se envolvidos na sua recuperação.",
-            benefits_cta: "Comece hoje",
-            card1_title: "Compreensão do Paciente",
-            card1_desc: "O feedback visual em tempo real ajuda os pacientes a ver e compreender exatamente quais músculos estão a ativar, tornando os exercícios mais claros e intuitivos durante as sessões.",
-            card2_title: "Otimização do Fluxo de Trabalho",
-            card2_desc: "A análise automatizada poupa tempo clínico valioso, permitindo que os profissionais se concentrem nos cuidados ao paciente em vez da documentação manual.",
-            card3_title: "Comunicação mais Clara",
-            card3_desc: "Relatórios visuais e fáceis de entender facilitam uma melhor comunicação entre equipas de cuidados multidisciplinares.",
-            card4_title: "Motivação do Paciente",
-            card4_desc: "Ver a sua própria atividade muscular facial em tempo real mantém os pacientes motivados e ativamente envolvidos durante as sessões de terapia, reforçando o progresso e encorajando o esforço contínuo.",
-            cta_title: "Pronto para melhorar as suas sessões de reabilitação?",
-            cta_desc: "Junte-se às clínicas e centros de reabilitação que estão a revolucionar a terapia orofacial com feedback visual IA em tempo real.",
-            form_name: "Nome Completo",
-            form_name_ph: "Dr. João Silva",
-            form_email: "Email Profissional",
-            form_email_ph: "joao@hospital.pt",
-            form_org: "Organização / Clínica",
-            form_org_ph: "Centro Médico Geral",
-            form_submit: "Solicitar uma Demo",
-            form_privacy: 'Os seus dados estão seguros. Consulte a nossa <a href="#" class="underline hover:text-gray-600">Política de Privacidade</a>.',
-            footer_copy: "&copy; 2026 Facila HealthTech. Todos os direitos reservados.",
-            mail_subject: "Pedido de Demo Facila",
-            mail_body_name: "Nome",
-            mail_body_email: "Email",
-            mail_body_org: "Organização",
-            contact_or: "Ou escreva-nos diretamente para",
-            form_success_title: "Pedido Enviado!",
-            form_success_desc: "Obrigado pelo seu interesse. Entraremos em contacto em breve.",
-            form_error_title: "Erro de Envio",
-            form_error_desc: 'Ocorreu um problema. Por favor escreva-nos diretamente para <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
-            form_error_retry: "Tentar novamente",
-        }
-    };
-
-    const langLabels = { it: "IT", en: "EN", fr: "FR", de: "DE", es: "ES", pt: "PT" };
-    let currentLang = "it";
-
-    function setLang(lang) {
-        currentLang = lang;
-        const t = translations[lang];
-        if (!t) return;
-
-        // Update html lang attribute
-        document.documentElement.lang = lang;
-
-        // Update all data-i18n elements
-        document.querySelectorAll("[data-i18n]").forEach(el => {
-            const key = el.getAttribute("data-i18n");
-            if (t[key] !== undefined) el.innerHTML = t[key];
-        });
-
-        // Update placeholders
-        document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-            const key = el.getAttribute("data-i18n-placeholder");
-            if (t[key] !== undefined) el.placeholder = t[key];
-        });
-
-        // Update language label in switcher
-        document.getElementById("currentLangLabel").textContent = langLabels[lang];
-        document.getElementById("currentLangLabelMobile").textContent = langLabels[lang];
-
-        // Update page title
-        const titles = {
-            it: "Facila | Feedback Visivo IA per la Riabilitazione Orofacciale",
-            en: "Facila | AI-Driven Orofacial Motor Analysis",
-            fr: "Facila | Feedback Visuel IA pour la Rééducation Orofaciale",
-            de: "Facila | KI-gestütztes Feedback für orofaziale Rehabilitation",
-            es: "Facila | Feedback Visual IA para Rehabilitación Orofacial",
-            pt: "Facila | Feedback Visual IA para Reabilitação Orofacial",
-        };
-        document.title = titles[lang] || titles.en;
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+var T = {
+    it: {
+        nav_about:"Chi siamo", nav_technology:"Tecnologia", nav_benefits:"Benefici Clinici", nav_demo:"Richiedi una Demo",
+        hero_badge:"HealthTech di Nuova Generazione",
+        hero_title:'Feedback Visivo IA per la <span class="text-brand-600">Riabilitazione Orofacciale</span>',
+        hero_desc:"Facila \u00e8 una piattaforma di visione artificiale basata sull'IA che fornisce feedback visivo in tempo reale durante le sedute terapeutiche, aiutando i pazienti a comprendere gli esercizi e a restare motivati nel percorso riabilitativo.",
+        hero_cta1:"Collabora con noi", hero_cta2:"Scopri la Tecnologia",
+        float_label1:"Analisi IA", float_value1:"Mappatura Orofacciale Attiva",
+        float_value2:'Feedback Sessione: <span class="text-green-600">Attivo</span>',
+        tech_title:"Feedback Visivo in Tempo Reale Durante le Sedute Terapeutiche",
+        tech_desc:"I nostri modelli IA operano in tempo reale durante le sedute di riabilitazione, offrendo a terapisti e pazienti un feedback visivo immediato sull\u2019attivit\u00e0 muscolare facciale \u2014 direttamente da una telecamera standard.",
+        step1_title:"Video Standard", step1_desc:"Nessun hardware specializzato. Acquisizione dei movimenti facciali e articolatori del paziente con registrazioni video standard da qualsiasi dispositivo.",
+        step2_title:"Modelli IA Avanzati", step2_desc:"La nostra tecnologia proprietaria di visione artificiale elabora il video, tracciando con precisione le funzioni motorie facciali e articolatorie microscopiche.",
+        step3_title:"Feedback in Tempo Reale", step3_desc:"Terapisti e pazienti vedono visualizzazioni in tempo reale dell\u2019attivit\u00e0 muscolare durante gli esercizi, migliorando comprensione, coinvolgimento e motivazione ad ogni seduta.",
+        benefits_badge:"Integrazione Clinica", benefits_title:"Progettato in Collaborazione con i Clinici",
+        benefits_desc:"Pensato per ospedali, cliniche e studi privati, Facila potenzia le sedute di riabilitazione fornendo feedback visivo che aiuta i pazienti a comprendere gli esercizi e a restare coinvolti nel proprio percorso di recupero.",
+        benefits_cta:"Inizia oggi",
+        card1_title:"Comprensione del Paziente", card1_desc:"Il feedback visivo in tempo reale aiuta i pazienti a vedere e comprendere esattamente quali muscoli stanno attivando, rendendo gli esercizi pi\u00f9 chiari e intuitivi durante le sedute.",
+        card2_title:"Ottimizzazione del Flusso di Lavoro", card2_desc:"L\u2019analisi automatizzata fa risparmiare tempo clinico prezioso, consentendo ai professionisti di concentrarsi sulla cura del paziente anzich\u00e9 sulla documentazione manuale.",
+        card3_title:"Comunicazione pi\u00f9 Chiara", card3_desc:"Report visivi e facilmente comprensibili facilitano una comunicazione migliore tra i team di cura multidisciplinari.",
+        card4_title:"Motivazione del Paziente", card4_desc:"Vedere la propria attivit\u00e0 muscolare facciale in tempo reale mantiene i pazienti motivati e attivamente coinvolti durante le sedute terapeutiche, rafforzando i progressi e incoraggiando l\u2019impegno.",
+        cta_title:"Pronto a migliorare le tue sedute di riabilitazione?",
+        cta_desc:"Unisciti alle cliniche e ai centri di riabilitazione che stanno rivoluzionando la terapia orofacciale con il feedback visivo basato sull\u2019IA in tempo reale.",
+        contact_or:"Oppure scrivici direttamente a",
+        form_name:"Nome Completo", form_name_ph:"Dr. Mario Rossi",
+        form_email:"Email Professionale", form_email_ph:"mario@ospedale.it",
+        form_org:"Organizzazione / Clinica", form_org_ph:"Centro Medico Generale",
+        form_submit:"Richiedi una Demo",
+        form_privacy:'I tuoi dati sono al sicuro. Consulta la nostra <a href="#" class="underline hover:text-gray-600">Privacy Policy</a>.',
+        footer_copy:"\u00a9 2026 Facila HealthTech. Tutti i diritti riservati.",
+        mail_subject:"Richiesta Demo Facila", mail_lbl_name:"Nome", mail_lbl_email:"Email", mail_lbl_org:"Organizzazione"
+    },
+    en: {
+        nav_about:"About", nav_technology:"Technology", nav_benefits:"Clinical Benefits", nav_demo:"Request Demo",
+        hero_badge:"Next-Generation HealthTech",
+        hero_title:'AI-Powered Visual Feedback for <span class="text-brand-600">Orofacial Rehabilitation</span>',
+        hero_desc:"Facila is an AI-driven computer vision platform that provides real-time visual feedback during therapy sessions, helping patients understand their exercises and stay motivated throughout their rehabilitation journey.",
+        hero_cta1:"Partner with us", hero_cta2:"Discover the Tech",
+        float_label1:"AI Analysis", float_value1:"Orofacial Mapping Active",
+        float_value2:'Session Feedback: <span class="text-green-600">Active</span>',
+        tech_title:"Real-Time Visual Feedback During Therapy Sessions",
+        tech_desc:"Our AI models work in real time during rehabilitation sessions, giving therapists and patients instant visual feedback on facial muscle activity \u2014 directly from a standard camera.",
+        step1_title:"Standard Video", step1_desc:"No specialized hardware required. Capture patient facial and articulatory movement using standard video recordings from any device.",
+        step2_title:"Advanced AI Models", step2_desc:"Our proprietary computer vision technology processes the video, precisely tracking microscopic facial and articulatory motor functions.",
+        step3_title:"Live Session Feedback", step3_desc:"Therapists and patients see real-time visualizations of muscle activity during exercises, improving understanding, engagement, and motivation throughout each session.",
+        benefits_badge:"Clinical Integration", benefits_title:"Designed in Collaboration with Clinicians",
+        benefits_desc:"Built for hospitals, clinics, and private practices, Facila enhances rehabilitation sessions by providing visual feedback that helps patients understand their exercises and stay engaged in their recovery.",
+        benefits_cta:"Get started today",
+        card1_title:"Patient Comprehension", card1_desc:"Real-time visual feedback helps patients see and understand exactly which muscles they are activating, making exercises clearer and more intuitive during sessions.",
+        card2_title:"Streamlines Workflows", card2_desc:"Automated analysis saves valuable clinical time, allowing practitioners to focus on patient care rather than manual documentation.",
+        card3_title:"Clearer Communication", card3_desc:"Visual, easy-to-understand data reports facilitate better communication between multidisciplinary care teams.",
+        card4_title:"Patient Motivation", card4_desc:"Seeing their own facial muscle activity in real time keeps patients motivated and actively engaged during therapy sessions, reinforcing progress and encouraging continued effort.",
+        cta_title:"Ready to enhance your rehabilitation sessions?",
+        cta_desc:"Join the clinics and rehabilitation centers pioneering the future of orofacial therapy with real-time AI-powered visual feedback.",
+        contact_or:"Or write to us directly at",
+        form_name:"Full Name", form_name_ph:"Dr. Jane Doe",
+        form_email:"Work Email", form_email_ph:"jane@hospital.org",
+        form_org:"Organization / Clinic", form_org_ph:"General Medical Center",
+        form_submit:"Request a Demo",
+        form_privacy:'We care about your data. See our <a href="#" class="underline hover:text-gray-600">Privacy Policy</a>.',
+        footer_copy:"\u00a9 2026 Facila HealthTech. All rights reserved.",
+        mail_subject:"Facila Demo Request", mail_lbl_name:"Name", mail_lbl_email:"Email", mail_lbl_org:"Organization"
+    },
+    fr: {
+        nav_about:"\u00c0 propos", nav_technology:"Technologie", nav_benefits:"B\u00e9n\u00e9fices Cliniques", nav_demo:"Demander une D\u00e9mo",
+        hero_badge:"HealthTech Nouvelle G\u00e9n\u00e9ration",
+        hero_title:'Feedback Visuel IA pour la <span class="text-brand-600">R\u00e9\u00e9ducation Orofaciale</span>',
+        hero_desc:"Facila est une plateforme de vision par ordinateur bas\u00e9e sur l\u2019IA qui fournit un feedback visuel en temps r\u00e9el pendant les s\u00e9ances de th\u00e9rapie, aidant les patients \u00e0 comprendre leurs exercices et \u00e0 rester motiv\u00e9s tout au long de leur parcours de r\u00e9\u00e9ducation.",
+        hero_cta1:"Collaborer avec nous", hero_cta2:"D\u00e9couvrir la Technologie",
+        float_label1:"Analyse IA", float_value1:"Cartographie Orofaciale Active",
+        float_value2:'Feedback S\u00e9ance : <span class="text-green-600">Actif</span>',
+        tech_title:"Feedback Visuel en Temps R\u00e9el Pendant les S\u00e9ances de Th\u00e9rapie",
+        tech_desc:"Nos mod\u00e8les IA fonctionnent en temps r\u00e9el pendant les s\u00e9ances de r\u00e9\u00e9ducation, offrant aux th\u00e9rapeutes et aux patients un feedback visuel instantan\u00e9 sur l\u2019activit\u00e9 musculaire faciale \u2014 directement depuis une cam\u00e9ra standard.",
+        step1_title:"Vid\u00e9o Standard", step1_desc:"Aucun mat\u00e9riel sp\u00e9cialis\u00e9 requis. Captez les mouvements faciaux et articulatoires du patient avec des enregistrements vid\u00e9o standard depuis n\u2019importe quel appareil.",
+        step2_title:"Mod\u00e8les IA Avanc\u00e9s", step2_desc:"Notre technologie propri\u00e9taire de vision par ordinateur traite la vid\u00e9o, suivant avec pr\u00e9cision les fonctions motrices faciales et articulatoires microscopiques.",
+        step3_title:"Feedback en Temps R\u00e9el", step3_desc:"Th\u00e9rapeutes et patients voient en temps r\u00e9el les visualisations de l\u2019activit\u00e9 musculaire pendant les exercices, am\u00e9liorant la compr\u00e9hension, l\u2019engagement et la motivation \u00e0 chaque s\u00e9ance.",
+        benefits_badge:"Int\u00e9gration Clinique", benefits_title:"Con\u00e7u en Collaboration avec les Cliniciens",
+        benefits_desc:"Pens\u00e9 pour les h\u00f4pitaux, cliniques et cabinets priv\u00e9s, Facila enrichit les s\u00e9ances de r\u00e9\u00e9ducation gr\u00e2ce \u00e0 un feedback visuel qui aide les patients \u00e0 comprendre leurs exercices et \u00e0 rester impliqu\u00e9s dans leur gu\u00e9rison.",
+        benefits_cta:"Commencez aujourd\u2019hui",
+        card1_title:"Compr\u00e9hension du Patient", card1_desc:"Le feedback visuel en temps r\u00e9el aide les patients \u00e0 voir et comprendre exactement quels muscles ils activent, rendant les exercices plus clairs et intuitifs pendant les s\u00e9ances.",
+        card2_title:"Optimisation du Flux de Travail", card2_desc:"L\u2019analyse automatis\u00e9e fait gagner un temps clinique pr\u00e9cieux, permettant aux praticiens de se concentrer sur les soins aux patients plut\u00f4t que sur la documentation manuelle.",
+        card3_title:"Communication plus Claire", card3_desc:"Des rapports visuels et faciles \u00e0 comprendre facilitent une meilleure communication entre les \u00e9quipes de soins pluridisciplinaires.",
+        card4_title:"Motivation du Patient", card4_desc:"Voir leur propre activit\u00e9 musculaire faciale en temps r\u00e9el maintient les patients motiv\u00e9s et activement engag\u00e9s pendant les s\u00e9ances de th\u00e9rapie, renfor\u00e7ant les progr\u00e8s et encourageant l\u2019effort continu.",
+        cta_title:"Pr\u00eat \u00e0 am\u00e9liorer vos s\u00e9ances de r\u00e9\u00e9ducation ?",
+        cta_desc:"Rejoignez les cliniques et centres de r\u00e9\u00e9ducation qui r\u00e9volutionnent la th\u00e9rapie orofaciale avec le feedback visuel IA en temps r\u00e9el.",
+        contact_or:"Ou \u00e9crivez-nous directement \u00e0",
+        form_name:"Nom Complet", form_name_ph:"Dr. Jean Dupont",
+        form_email:"Email Professionnel", form_email_ph:"jean@hopital.fr",
+        form_org:"Organisation / Clinique", form_org_ph:"Centre M\u00e9dical G\u00e9n\u00e9ral",
+        form_submit:"Demander une D\u00e9mo",
+        form_privacy:'Vos donn\u00e9es sont prot\u00e9g\u00e9es. Consultez notre <a href="#" class="underline hover:text-gray-600">Politique de Confidentialit\u00e9</a>.',
+        footer_copy:"\u00a9 2026 Facila HealthTech. Tous droits r\u00e9serv\u00e9s.",
+        mail_subject:"Demande de D\u00e9mo Facila", mail_lbl_name:"Nom", mail_lbl_email:"Email", mail_lbl_org:"Organisation"
+    },
+    de: {
+        nav_about:"\u00dcber uns", nav_technology:"Technologie", nav_benefits:"Klinische Vorteile", nav_demo:"Demo Anfordern",
+        hero_badge:"HealthTech der n\u00e4chsten Generation",
+        hero_title:'KI-gest\u00fctztes visuelles Feedback f\u00fcr die <span class="text-brand-600">orofaziale Rehabilitation</span>',
+        hero_desc:"Facila ist eine KI-gest\u00fctzte Computer-Vision-Plattform, die w\u00e4hrend der Therapiesitzungen visuelles Echtzeit-Feedback liefert und Patienten hilft, ihre \u00dcbungen zu verstehen und w\u00e4hrend des gesamten Rehabilitationsverlaufs motiviert zu bleiben.",
+        hero_cta1:"Partner werden", hero_cta2:"Technologie entdecken",
+        float_label1:"KI-Analyse", float_value1:"Orofaziale Kartierung Aktiv",
+        float_value2:'Sitzungs-Feedback: <span class="text-green-600">Aktiv</span>',
+        tech_title:"Visuelles Echtzeit-Feedback W\u00e4hrend der Therapiesitzungen",
+        tech_desc:"Unsere KI-Modelle arbeiten in Echtzeit w\u00e4hrend der Rehabilitationssitzungen und bieten Therapeuten und Patienten sofortiges visuelles Feedback zur Gesichtsmuskelaktivit\u00e4t \u2014 direkt von einer Standardkamera.",
+        step1_title:"Standardvideo", step1_desc:"Keine spezielle Hardware erforderlich. Erfassung der Gesichts- und Artikulationsbewegungen des Patienten mit Standard-Videoaufnahmen von jedem Ger\u00e4t.",
+        step2_title:"Fortschrittliche KI-Modelle", step2_desc:"Unsere propriet\u00e4re Computer-Vision-Technologie verarbeitet das Video und verfolgt pr\u00e4zise die mikroskopischen Gesichts- und Artikulationsmotorfunktionen.",
+        step3_title:"Echtzeit-Feedback", step3_desc:"Therapeuten und Patienten sehen Echtzeit-Visualisierungen der Muskelaktivit\u00e4t w\u00e4hrend der \u00dcbungen, was Verst\u00e4ndnis, Engagement und Motivation in jeder Sitzung verbessert.",
+        benefits_badge:"Klinische Integration", benefits_title:"In Zusammenarbeit mit Klinikern Entwickelt",
+        benefits_desc:"Entwickelt f\u00fcr Krankenh\u00e4user, Kliniken und Privatpraxen \u2014 Facila verbessert Rehabilitationssitzungen durch visuelles Feedback, das Patienten hilft, ihre \u00dcbungen zu verstehen und engagiert zu bleiben.",
+        benefits_cta:"Heute starten",
+        card1_title:"Patientenverst\u00e4ndnis", card1_desc:"Visuelles Echtzeit-Feedback hilft Patienten zu sehen und zu verstehen, welche Muskeln sie genau aktivieren, wodurch \u00dcbungen klarer und intuitiver werden.",
+        card2_title:"Workflow-Optimierung", card2_desc:"Automatisierte Analyse spart wertvolle klinische Zeit und erm\u00f6glicht es \u00c4rzten, sich auf die Patientenversorgung statt auf manuelle Dokumentation zu konzentrieren.",
+        card3_title:"Klarere Kommunikation", card3_desc:"Visuelle, leicht verst\u00e4ndliche Datenberichte erleichtern die Kommunikation zwischen multidisziplin\u00e4ren Betreuungsteams.",
+        card4_title:"Patientenmotivation", card4_desc:"Die eigene Gesichtsmuskelaktivit\u00e4t in Echtzeit zu sehen, h\u00e4lt Patienten motiviert und aktiv engagiert w\u00e4hrend der Therapiesitzungen.",
+        cta_title:"Bereit, Ihre Rehabilitationssitzungen zu verbessern?",
+        cta_desc:"Schlie\u00dfen Sie sich den Kliniken und Rehabilitationszentren an, die die Zukunft der orofazialen Therapie mit KI-gest\u00fctztem Echtzeit-Feedback gestalten.",
+        contact_or:"Oder schreiben Sie uns direkt an",
+        form_name:"Vollst\u00e4ndiger Name", form_name_ph:"Dr. Hans M\u00fcller",
+        form_email:"Berufliche E-Mail", form_email_ph:"hans@klinik.de",
+        form_org:"Organisation / Klinik", form_org_ph:"Allgemeines Medizinisches Zentrum",
+        form_submit:"Demo Anfordern",
+        form_privacy:'Ihre Daten sind sicher. Lesen Sie unsere <a href="#" class="underline hover:text-gray-600">Datenschutzrichtlinie</a>.',
+        footer_copy:"\u00a9 2026 Facila HealthTech. Alle Rechte vorbehalten.",
+        mail_subject:"Facila Demo-Anfrage", mail_lbl_name:"Name", mail_lbl_email:"E-Mail", mail_lbl_org:"Organisation"
+    },
+    es: {
+        nav_about:"Acerca de", nav_technology:"Tecnolog\u00eda", nav_benefits:"Beneficios Cl\u00ednicos", nav_demo:"Solicitar Demo",
+        hero_badge:"HealthTech de Nueva Generaci\u00f3n",
+        hero_title:'Feedback Visual con IA para la <span class="text-brand-600">Rehabilitaci\u00f3n Orofacial</span>',
+        hero_desc:"Facila es una plataforma de visi\u00f3n artificial impulsada por IA que proporciona retroalimentaci\u00f3n visual en tiempo real durante las sesiones de terapia, ayudando a los pacientes a comprender sus ejercicios y mantenerse motivados a lo largo de su rehabilitaci\u00f3n.",
+        hero_cta1:"Colabora con nosotros", hero_cta2:"Descubre la Tecnolog\u00eda",
+        float_label1:"An\u00e1lisis IA", float_value1:"Mapeo Orofacial Activo",
+        float_value2:'Feedback Sesi\u00f3n: <span class="text-green-600">Activo</span>',
+        tech_title:"Feedback Visual en Tiempo Real Durante las Sesiones de Terapia",
+        tech_desc:"Nuestros modelos de IA funcionan en tiempo real durante las sesiones de rehabilitaci\u00f3n, ofreciendo a terapeutas y pacientes un feedback visual instant\u00e1neo sobre la actividad muscular facial \u2014 directamente desde una c\u00e1mara est\u00e1ndar.",
+        step1_title:"Video Est\u00e1ndar", step1_desc:"Sin hardware especializado. Captura los movimientos faciales y articulatorios del paciente con grabaciones de video est\u00e1ndar desde cualquier dispositivo.",
+        step2_title:"Modelos IA Avanzados", step2_desc:"Nuestra tecnolog\u00eda propietaria de visi\u00f3n artificial procesa el video, rastreando con precisi\u00f3n las funciones motoras faciales y articulatorias microsc\u00f3picas.",
+        step3_title:"Feedback en Tiempo Real", step3_desc:"Terapeutas y pacientes ven visualizaciones en tiempo real de la actividad muscular durante los ejercicios, mejorando la comprensi\u00f3n, el compromiso y la motivaci\u00f3n en cada sesi\u00f3n.",
+        benefits_badge:"Integraci\u00f3n Cl\u00ednica", benefits_title:"Dise\u00f1ado en Colaboraci\u00f3n con los Cl\u00ednicos",
+        benefits_desc:"Pensado para hospitales, cl\u00ednicas y consultorios privados, Facila mejora las sesiones de rehabilitaci\u00f3n proporcionando feedback visual que ayuda a los pacientes a comprender sus ejercicios y mantenerse comprometidos con su recuperaci\u00f3n.",
+        benefits_cta:"Empieza hoy",
+        card1_title:"Comprensi\u00f3n del Paciente", card1_desc:"El feedback visual en tiempo real ayuda a los pacientes a ver y comprender exactamente qu\u00e9 m\u00fasculos est\u00e1n activando, haciendo los ejercicios m\u00e1s claros e intuitivos durante las sesiones.",
+        card2_title:"Optimizaci\u00f3n del Flujo de Trabajo", card2_desc:"El an\u00e1lisis automatizado ahorra tiempo cl\u00ednico valioso, permitiendo a los profesionales centrarse en la atenci\u00f3n al paciente en lugar de la documentaci\u00f3n manual.",
+        card3_title:"Comunicaci\u00f3n m\u00e1s Clara", card3_desc:"Informes visuales y f\u00e1ciles de entender facilitan una mejor comunicaci\u00f3n entre equipos de atenci\u00f3n multidisciplinarios.",
+        card4_title:"Motivaci\u00f3n del Paciente", card4_desc:"Ver su propia actividad muscular facial en tiempo real mantiene a los pacientes motivados y activamente comprometidos durante las sesiones de terapia, reforzando el progreso y fomentando el esfuerzo continuo.",
+        cta_title:"\u00bfListo para mejorar tus sesiones de rehabilitaci\u00f3n?",
+        cta_desc:"\u00danete a las cl\u00ednicas y centros de rehabilitaci\u00f3n que est\u00e1n revolucionando la terapia orofacial con feedback visual IA en tiempo real.",
+        contact_or:"O escr\u00edbenos directamente a",
+        form_name:"Nombre Completo", form_name_ph:"Dr. Mar\u00eda Garc\u00eda",
+        form_email:"Email Profesional", form_email_ph:"maria@hospital.es",
+        form_org:"Organizaci\u00f3n / Cl\u00ednica", form_org_ph:"Centro M\u00e9dico General",
+        form_submit:"Solicitar una Demo",
+        form_privacy:'Tus datos est\u00e1n seguros. Consulta nuestra <a href="#" class="underline hover:text-gray-600">Pol\u00edtica de Privacidad</a>.',
+        footer_copy:"\u00a9 2026 Facila HealthTech. Todos los derechos reservados.",
+        mail_subject:"Solicitud de Demo Facila", mail_lbl_name:"Nombre", mail_lbl_email:"Email", mail_lbl_org:"Organizaci\u00f3n"
+    },
+    pt: {
+        nav_about:"Sobre", nav_technology:"Tecnologia", nav_benefits:"Benef\u00edcios Cl\u00ednicos", nav_demo:"Solicitar Demo",
+        hero_badge:"HealthTech de Nova Gera\u00e7\u00e3o",
+        hero_title:'Feedback Visual com IA para a <span class="text-brand-600">Reabilita\u00e7\u00e3o Orofacial</span>',
+        hero_desc:"Facila \u00e9 uma plataforma de vis\u00e3o computacional baseada em IA que fornece feedback visual em tempo real durante as sess\u00f5es de terapia, ajudando os pacientes a compreender os exerc\u00edcios e a manterem-se motivados ao longo do percurso de reabilita\u00e7\u00e3o.",
+        hero_cta1:"Colabore connosco", hero_cta2:"Descubra a Tecnologia",
+        float_label1:"An\u00e1lise IA", float_value1:"Mapeamento Orofacial Ativo",
+        float_value2:'Feedback Sess\u00e3o: <span class="text-green-600">Ativo</span>',
+        tech_title:"Feedback Visual em Tempo Real Durante as Sess\u00f5es de Terapia",
+        tech_desc:"Os nossos modelos de IA funcionam em tempo real durante as sess\u00f5es de reabilita\u00e7\u00e3o, oferecendo a terapeutas e pacientes feedback visual instant\u00e2neo sobre a atividade muscular facial \u2014 diretamente a partir de uma c\u00e2mara padr\u00e3o.",
+        step1_title:"V\u00eddeo Padr\u00e3o", step1_desc:"Sem hardware especializado. Capte os movimentos faciais e articulat\u00f3rios do paciente com grava\u00e7\u00f5es de v\u00eddeo padr\u00e3o a partir de qualquer dispositivo.",
+        step2_title:"Modelos IA Avan\u00e7ados", step2_desc:"A nossa tecnologia propriet\u00e1ria de vis\u00e3o computacional processa o v\u00eddeo, rastreando com precis\u00e3o as fun\u00e7\u00f5es motoras faciais e articulat\u00f3rias microsc\u00f3picas.",
+        step3_title:"Feedback em Tempo Real", step3_desc:"Terapeutas e pacientes veem visualiza\u00e7\u00f5es em tempo real da atividade muscular durante os exerc\u00edcios, melhorando a compreens\u00e3o, o envolvimento e a motiva\u00e7\u00e3o em cada sess\u00e3o.",
+        benefits_badge:"Integra\u00e7\u00e3o Cl\u00ednica", benefits_title:"Concebido em Colabora\u00e7\u00e3o com os Cl\u00ednicos",
+        benefits_desc:"Pensado para hospitais, cl\u00ednicas e consult\u00f3rios privados, Facila enriquece as sess\u00f5es de reabilita\u00e7\u00e3o com feedback visual que ajuda os pacientes a compreender os exerc\u00edcios e a manterem-se envolvidos na sua recupera\u00e7\u00e3o.",
+        benefits_cta:"Comece hoje",
+        card1_title:"Compreens\u00e3o do Paciente", card1_desc:"O feedback visual em tempo real ajuda os pacientes a ver e compreender exatamente quais m\u00fasculos est\u00e3o a ativar, tornando os exerc\u00edcios mais claros e intuitivos durante as sess\u00f5es.",
+        card2_title:"Otimiza\u00e7\u00e3o do Fluxo de Trabalho", card2_desc:"A an\u00e1lise automatizada poupa tempo cl\u00ednico valioso, permitindo que os profissionais se concentrem nos cuidados ao paciente em vez da documenta\u00e7\u00e3o manual.",
+        card3_title:"Comunica\u00e7\u00e3o mais Clara", card3_desc:"Relat\u00f3rios visuais e f\u00e1ceis de entender facilitam uma melhor comunica\u00e7\u00e3o entre equipas de cuidados multidisciplinares.",
+        card4_title:"Motiva\u00e7\u00e3o do Paciente", card4_desc:"Ver a sua pr\u00f3pria atividade muscular facial em tempo real mant\u00e9m os pacientes motivados e ativamente envolvidos durante as sess\u00f5es de terapia, refor\u00e7ando o progresso e encorajando o esfor\u00e7o cont\u00ednuo.",
+        cta_title:"Pronto para melhorar as suas sess\u00f5es de reabilita\u00e7\u00e3o?",
+        cta_desc:"Junte-se \u00e0s cl\u00ednicas e centros de reabilita\u00e7\u00e3o que est\u00e3o a revolucionar a terapia orofacial com feedback visual IA em tempo real.",
+        contact_or:"Ou escreva-nos diretamente para",
+        form_name:"Nome Completo", form_name_ph:"Dr. Jo\u00e3o Silva",
+        form_email:"Email Profissional", form_email_ph:"joao@hospital.pt",
+        form_org:"Organiza\u00e7\u00e3o / Cl\u00ednica", form_org_ph:"Centro M\u00e9dico Geral",
+        form_submit:"Solicitar uma Demo",
+        form_privacy:'Os seus dados est\u00e3o seguros. Consulte a nossa <a href="#" class="underline hover:text-gray-600">Pol\u00edtica de Privacidade</a>.',
+        footer_copy:"\u00a9 2026 Facila HealthTech. Todos os direitos reservados.",
+        mail_subject:"Pedido de Demo Facila", mail_lbl_name:"Nome", mail_lbl_email:"Email", mail_lbl_org:"Organiza\u00e7\u00e3o"
     }
+};
 
-    // ===== Language dropdown: click to open/close =====
-    document.querySelectorAll('.lang-toggle').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var dropdown = this.parentElement.querySelector('.lang-dropdown');
-            // Close all other dropdowns first
-            document.querySelectorAll('.lang-dropdown').forEach(function(d) {
-                if (d !== dropdown) d.classList.remove('open');
-            });
-            dropdown.classList.toggle('open');
-        });
+var langLabels = {it:"IT",en:"EN",fr:"FR",de:"DE",es:"ES",pt:"PT"};
+var currentLang = "it";
+
+function setLang(lang) {
+    currentLang = lang;
+    var t = T[lang]; if (!t) return;
+    document.documentElement.lang = lang;
+    var els = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < els.length; i++) { var k = els[i].getAttribute("data-i18n"); if (t[k] !== undefined) els[i].innerHTML = t[k]; }
+    var phs = document.querySelectorAll("[data-i18n-placeholder]");
+    for (var i = 0; i < phs.length; i++) { var k = phs[i].getAttribute("data-i18n-placeholder"); if (t[k] !== undefined) phs[i].placeholder = t[k]; }
+    document.getElementById("langLabelDesktop").textContent = langLabels[lang];
+    document.getElementById("langLabelMobile").textContent = langLabels[lang];
+    var titles = {it:"Facila | Feedback Visivo IA per la Riabilitazione Orofacciale",en:"Facila | AI-Driven Orofacial Motor Analysis",fr:"Facila | Feedback Visuel IA pour la R\u00e9\u00e9ducation Orofaciale",de:"Facila | KI-gest\u00fctztes Feedback f\u00fcr orofaziale Rehabilitation",es:"Facila | Feedback Visual IA para Rehabilitaci\u00f3n Orofacial",pt:"Facila | Feedback Visual IA para Reabilita\u00e7\u00e3o Orofacial"};
+    document.title = titles[lang] || titles.en;
+}
+
+/* dropdown toggle */
+function toggleDrop(id) {
+    var el = document.getElementById(id); var wasOpen = el.classList.contains("open");
+    var all = document.querySelectorAll(".lang-dropdown"); for (var i=0;i<all.length;i++) all[i].classList.remove("open");
+    if (!wasOpen) el.classList.add("open");
+}
+document.getElementById("langToggleDesktop").addEventListener("click", function(e){ e.stopPropagation(); toggleDrop("langDropDesktop"); });
+document.getElementById("langToggleMobile").addEventListener("click", function(e){ e.stopPropagation(); toggleDrop("langDropMobile"); });
+
+var opts = document.querySelectorAll("[data-lang]");
+for (var i=0;i<opts.length;i++) {
+    opts[i].addEventListener("click", function(e){
+        e.stopPropagation();
+        setLang(this.getAttribute("data-lang"));
+        var all = document.querySelectorAll(".lang-dropdown"); for(var j=0;j<all.length;j++) all[j].classList.remove("open");
     });
+}
+document.addEventListener("click", function(){ var all=document.querySelectorAll(".lang-dropdown"); for(var i=0;i<all.length;i++) all[i].classList.remove("open"); });
 
-    // Language option buttons
-    document.querySelectorAll('.lang-option').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var lang = this.getAttribute('data-lang');
-            if (lang) setLang(lang);
-            // Close all dropdowns
-            document.querySelectorAll('.lang-dropdown').forEach(function(d) {
-                d.classList.remove('open');
-            });
-        });
-    });
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function() {
-        document.querySelectorAll('.lang-dropdown').forEach(function(d) {
-            d.classList.remove('open');
-        });
-    });
-
-    // ===== Form: set _next redirect URL dynamically + detect success =====
-    // Set the _next hidden field so Formsubmit redirects back to this page with ?sent=1
-    (function() {
-        var base = window.location.href.split('?')[0].split('#')[0];
-        document.getElementById('formNext').value = base + '?sent=1#contact';
-    })();
-
-    // If ?sent=1 is in URL, show success message and hide the form
-    if (new URLSearchParams(window.location.search).get('sent') === '1') {
-        var form = document.getElementById('contactForm');
-        var success = document.getElementById('formSuccess');
-        if (form) form.classList.add('hidden');
-        if (success) success.classList.remove('hidden');
-        // Clean URL without reloading
-        history.replaceState(null, '', window.location.pathname + '#contact');
-    }
-    </script>
-
+/* form -> mailto */
+document.getElementById("sendBtn").addEventListener("click", function(){
+    var n = document.getElementById("fieldName").value.trim();
+    var e = document.getElementById("fieldEmail").value.trim();
+    var o = document.getElementById("fieldOrg").value.trim();
+    var t = T[currentLang];
+    var subj = encodeURIComponent(t.mail_subject);
+    var body = encodeURIComponent(t.mail_lbl_name+": "+n+"\n"+t.mail_lbl_email+": "+e+"\n"+t.mail_lbl_org+": "+o);
+    window.location.href = "mailto:facilaiss@gmail.com?subject="+subj+"&body="+body;
+});
+</script>
 </body>
 </html>

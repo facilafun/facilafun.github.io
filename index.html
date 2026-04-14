@@ -279,20 +279,25 @@
             <p class="text-gray-500 text-sm mb-8"><span data-i18n="contact_or">Oppure scrivici direttamente a</span> <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a></p>
 
             <!-- Form (visible state) -->
-            <form id="contactForm" class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 max-w-lg mx-auto text-left">
+            <form id="contactForm" action="https://formsubmit.co/facilaiss@gmail.com" method="POST" class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 max-w-lg mx-auto text-left">
+                <!-- Formsubmit config -->
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="Facila — New Demo Request">
+                <input type="hidden" name="_next" id="formNext" value="">
+                <input type="text" name="_honey" style="display:none">
+
                 <div class="mb-5">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="name" data-i18n="form_name">Nome Completo</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="name" name="name" type="text" required data-i18n-placeholder="form_name_ph" placeholder="Dr. Mario Rossi">
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="name" name="Name" type="text" required data-i18n-placeholder="form_name_ph" placeholder="Dr. Mario Rossi">
                 </div>
                 <div class="mb-5">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="email" data-i18n="form_email">Email Professionale</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="email" name="email" type="email" required data-i18n-placeholder="form_email_ph" placeholder="mario@ospedale.it">
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="email" name="Email" type="email" required data-i18n-placeholder="form_email_ph" placeholder="mario@ospedale.it">
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="organization" data-i18n="form_org">Organizzazione / Clinica</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="organization" name="organization" type="text" data-i18n-placeholder="form_org_ph" placeholder="Centro Medico Generale">
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="organization" name="Organization" type="text" data-i18n-placeholder="form_org_ph" placeholder="Centro Medico Generale">
                 </div>
                 <button class="w-full bg-brand-600 text-white font-bold py-3.5 px-4 rounded-xl hover:bg-brand-500 transition shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-200" type="submit" id="submitBtn" data-i18n="form_submit">
                     Richiedi una Demo
@@ -300,23 +305,13 @@
                 <p class="text-xs text-gray-400 mt-5 text-center" data-i18n="form_privacy">I tuoi dati sono al sicuro. Consulta la nostra <a href="#" class="underline hover:text-gray-600">Privacy Policy</a>.</p>
             </form>
 
-            <!-- Success message (hidden by default) -->
+            <!-- Success message (hidden by default, shown when ?sent=1 in URL) -->
             <div id="formSuccess" class="hidden bg-white p-8 rounded-3xl shadow-xl border border-gray-100 max-w-lg mx-auto text-center">
                 <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
                     <i class="fa-solid fa-check text-green-600 text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-brand-900 mb-3" data-i18n="form_success_title">Richiesta Inviata!</h3>
                 <p class="text-gray-600" data-i18n="form_success_desc">Grazie per il tuo interesse. Ti contatteremo al più presto.</p>
-            </div>
-
-            <!-- Error message (hidden by default) -->
-            <div id="formError" class="hidden bg-white p-8 rounded-3xl shadow-xl border border-red-200 max-w-lg mx-auto text-center">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
-                    <i class="fa-solid fa-exclamation-triangle text-red-500 text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-brand-900 mb-3" data-i18n="form_error_title">Errore di Invio</h3>
-                <p class="text-gray-600 mb-4" data-i18n="form_error_desc">Si è verificato un problema. Per favore scrivici direttamente a <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.</p>
-                <button onclick="document.getElementById('formError').classList.add('hidden'); document.getElementById('contactForm').classList.remove('hidden');" class="text-brand-600 font-medium hover:underline" data-i18n="form_error_retry">Riprova</button>
             </div>
         </div>
     </section>
@@ -717,46 +712,22 @@
         document.title = titles[lang] || titles.en;
     }
 
-    // ===== Form → Formsubmit.co → info@facila.tech =====
-    document.getElementById("contactForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+    // ===== Form: set _next redirect URL dynamically + detect success =====
+    // Set the _next hidden field so Formsubmit redirects back to this page with ?sent=1
+    (function() {
+        var base = window.location.href.split('?')[0].split('#')[0];
+        document.getElementById('formNext').value = base + '?sent=1#contact';
+    })();
 
-        const form = e.target;
-        const btn = document.getElementById("submitBtn");
-        const t = translations[currentLang];
-
-        // Disable button while sending
-        btn.disabled = true;
-        btn.textContent = "...";
-
-        const formData = new FormData(form);
-        // Add language info
-        formData.append("_subject", t.mail_subject);
-        formData.append("language", currentLang);
-
-        fetch("https://formsubmit.co/ajax/facilaiss@gmail.com", {
-            method: "POST",
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                form.classList.add("hidden");
-                document.getElementById("formSuccess").classList.remove("hidden");
-            } else {
-                form.classList.add("hidden");
-                document.getElementById("formError").classList.remove("hidden");
-            }
-        })
-        .catch(() => {
-            form.classList.add("hidden");
-            document.getElementById("formError").classList.remove("hidden");
-        })
-        .finally(() => {
-            btn.disabled = false;
-            btn.textContent = t.form_submit;
-        });
-    });
+    // If ?sent=1 is in URL, show success message and hide the form
+    if (new URLSearchParams(window.location.search).get('sent') === '1') {
+        var form = document.getElementById('contactForm');
+        var success = document.getElementById('formSuccess');
+        if (form) form.classList.add('hidden');
+        if (success) success.classList.remove('hidden');
+        // Clean URL without reloading
+        history.replaceState(null, '', window.location.pathname + '#contact');
+    }
     </script>
 
 </body>

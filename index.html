@@ -79,11 +79,11 @@
                             <i class="fa-solid fa-chevron-down text-[10px]"></i>
                         </button>
                         <div class="lang-dropdown absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[140px] z-50">
-                            <button onclick="setLang('it')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
-                            <button onclick="setLang('en')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
-                            <button onclick="setLang('fr')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
                             <button onclick="setLang('de')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
+                            <button onclick="setLang('en')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
                             <button onclick="setLang('es')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
+                            <button onclick="setLang('fr')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
+                            <button onclick="setLang('it')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
                             <button onclick="setLang('pt')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
                         </div>
                     </div>
@@ -97,11 +97,11 @@
                             <span id="currentLangLabelMobile">IT</span>
                         </button>
                         <div class="lang-dropdown absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[140px] z-50">
-                            <button onclick="setLang('it')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
-                            <button onclick="setLang('en')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
-                            <button onclick="setLang('fr')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
                             <button onclick="setLang('de')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
+                            <button onclick="setLang('en')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
                             <button onclick="setLang('es')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
+                            <button onclick="setLang('fr')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
+                            <button onclick="setLang('it')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
                             <button onclick="setLang('pt')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
                         </div>
                     </div>
@@ -275,24 +275,49 @@
             <p class="text-gray-600 text-lg mb-10" data-i18n="cta_desc">
                 Unisciti alle cliniche e ai centri di riabilitazione che stanno rivoluzionando la terapia orofacciale con il feedback visivo basato sull'IA in tempo reale.
             </p>
+            <!-- Contact email -->
+            <p class="text-gray-500 text-sm mb-8"><span data-i18n="contact_or">Oppure scrivici direttamente a</span> <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a></p>
+
+            <!-- Form (visible state) -->
             <form id="contactForm" class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 max-w-lg mx-auto text-left">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
                 <div class="mb-5">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="name" data-i18n="form_name">Nome Completo</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="name" type="text" data-i18n-placeholder="form_name_ph" placeholder="Dr. Mario Rossi">
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="name" name="name" type="text" required data-i18n-placeholder="form_name_ph" placeholder="Dr. Mario Rossi">
                 </div>
                 <div class="mb-5">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="email" data-i18n="form_email">Email Professionale</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="email" type="email" data-i18n-placeholder="form_email_ph" placeholder="mario@ospedale.it">
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="email" name="email" type="email" required data-i18n-placeholder="form_email_ph" placeholder="mario@ospedale.it">
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="organization" data-i18n="form_org">Organizzazione / Clinica</label>
-                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="organization" type="text" data-i18n-placeholder="form_org_ph" placeholder="Centro Medico Generale">
+                    <input class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition bg-gray-50 focus:bg-white" id="organization" name="organization" type="text" data-i18n-placeholder="form_org_ph" placeholder="Centro Medico Generale">
                 </div>
-                <button class="w-full bg-brand-600 text-white font-bold py-3.5 px-4 rounded-xl hover:bg-brand-500 transition shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-200" type="button" id="submitBtn" data-i18n="form_submit">
+                <button class="w-full bg-brand-600 text-white font-bold py-3.5 px-4 rounded-xl hover:bg-brand-500 transition shadow-md hover:shadow-lg hover:-translate-y-0.5 duration-200" type="submit" id="submitBtn" data-i18n="form_submit">
                     Richiedi una Demo
                 </button>
                 <p class="text-xs text-gray-400 mt-5 text-center" data-i18n="form_privacy">I tuoi dati sono al sicuro. Consulta la nostra <a href="#" class="underline hover:text-gray-600">Privacy Policy</a>.</p>
             </form>
+
+            <!-- Success message (hidden by default) -->
+            <div id="formSuccess" class="hidden bg-white p-8 rounded-3xl shadow-xl border border-gray-100 max-w-lg mx-auto text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                    <i class="fa-solid fa-check text-green-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-900 mb-3" data-i18n="form_success_title">Richiesta Inviata!</h3>
+                <p class="text-gray-600" data-i18n="form_success_desc">Grazie per il tuo interesse. Ti contatteremo al più presto.</p>
+            </div>
+
+            <!-- Error message (hidden by default) -->
+            <div id="formError" class="hidden bg-white p-8 rounded-3xl shadow-xl border border-red-200 max-w-lg mx-auto text-center">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                    <i class="fa-solid fa-exclamation-triangle text-red-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-900 mb-3" data-i18n="form_error_title">Errore di Invio</h3>
+                <p class="text-gray-600 mb-4" data-i18n="form_error_desc">Si è verificato un problema. Per favore scrivici direttamente a <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.</p>
+                <button onclick="document.getElementById('formError').classList.add('hidden'); document.getElementById('contactForm').classList.remove('hidden');" class="text-brand-600 font-medium hover:underline" data-i18n="form_error_retry">Riprova</button>
+            </div>
         </div>
     </section>
 
@@ -370,8 +395,13 @@
             mail_body_name: "Nome",
             mail_body_email: "Email",
             mail_body_org: "Organizzazione",
+            contact_or: "Oppure scrivici direttamente a",
+            form_success_title: "Richiesta Inviata!",
+            form_success_desc: "Grazie per il tuo interesse. Ti contatteremo al più presto.",
+            form_error_title: "Errore di Invio",
+            form_error_desc: 'Si è verificato un problema. Per favore scrivici direttamente a <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
+            form_error_retry: "Riprova",
         },
-        en: {
             nav_about: "About",
             nav_technology: "Technology",
             nav_benefits: "Clinical Benefits",
@@ -419,6 +449,12 @@
             mail_body_name: "Name",
             mail_body_email: "Email",
             mail_body_org: "Organization",
+            contact_or: "Or write to us directly at",
+            form_success_title: "Request Sent!",
+            form_success_desc: "Thank you for your interest. We will get back to you shortly.",
+            form_error_title: "Submission Error",
+            form_error_desc: 'Something went wrong. Please write to us directly at <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
+            form_error_retry: "Try again",
         },
         fr: {
             nav_about: "À propos",
@@ -468,6 +504,12 @@
             mail_body_name: "Nom",
             mail_body_email: "Email",
             mail_body_org: "Organisation",
+            contact_or: "Ou écrivez-nous directement à",
+            form_success_title: "Demande Envoyée !",
+            form_success_desc: "Merci pour votre intérêt. Nous vous recontacterons très prochainement.",
+            form_error_title: "Erreur d'Envoi",
+            form_error_desc: 'Un problème est survenu. Veuillez nous écrire directement à <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
+            form_error_retry: "Réessayer",
         },
         de: {
             nav_about: "Über uns",
@@ -517,6 +559,12 @@
             mail_body_name: "Name",
             mail_body_email: "E-Mail",
             mail_body_org: "Organisation",
+            contact_or: "Oder schreiben Sie uns direkt an",
+            form_success_title: "Anfrage Gesendet!",
+            form_success_desc: "Vielen Dank für Ihr Interesse. Wir werden uns in Kürze bei Ihnen melden.",
+            form_error_title: "Übermittlungsfehler",
+            form_error_desc: 'Es ist ein Problem aufgetreten. Bitte schreiben Sie uns direkt an <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
+            form_error_retry: "Erneut versuchen",
         },
         es: {
             nav_about: "Acerca de",
@@ -566,6 +614,12 @@
             mail_body_name: "Nombre",
             mail_body_email: "Email",
             mail_body_org: "Organización",
+            contact_or: "O escríbenos directamente a",
+            form_success_title: "¡Solicitud Enviada!",
+            form_success_desc: "Gracias por tu interés. Nos pondremos en contacto contigo pronto.",
+            form_error_title: "Error de Envío",
+            form_error_desc: 'Ha ocurrido un problema. Por favor escríbenos directamente a <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
+            form_error_retry: "Reintentar",
         },
         pt: {
             nav_about: "Sobre",
@@ -615,6 +669,12 @@
             mail_body_name: "Nome",
             mail_body_email: "Email",
             mail_body_org: "Organização",
+            contact_or: "Ou escreva-nos diretamente para",
+            form_success_title: "Pedido Enviado!",
+            form_success_desc: "Obrigado pelo seu interesse. Entraremos em contacto em breve.",
+            form_error_title: "Erro de Envio",
+            form_error_desc: 'Ocorreu um problema. Por favor escreva-nos diretamente para <a href="mailto:info@facila.tech" class="text-brand-600 font-semibold hover:underline">info@facila.tech</a>.',
+            form_error_retry: "Tentar novamente",
         }
     };
 
@@ -657,21 +717,45 @@
         document.title = titles[lang] || titles.en;
     }
 
-    // ===== Form → mailto:info@facila.tech =====
-    document.getElementById("submitBtn").addEventListener("click", function () {
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const org = document.getElementById("organization").value.trim();
+    // ===== Form → Formsubmit.co → info@facila.tech =====
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const btn = document.getElementById("submitBtn");
         const t = translations[currentLang];
 
-        const subject = encodeURIComponent(t.mail_subject);
-        const body = encodeURIComponent(
-            t.mail_body_name + ": " + name + "\n" +
-            t.mail_body_email + ": " + email + "\n" +
-            t.mail_body_org + ": " + org
-        );
+        // Disable button while sending
+        btn.disabled = true;
+        btn.textContent = "...";
 
-        window.location.href = "mailto:info@facila.tech?subject=" + subject + "&body=" + body;
+        const formData = new FormData(form);
+        // Add language info
+        formData.append("_subject", t.mail_subject);
+        formData.append("language", currentLang);
+
+        fetch("https://formsubmit.co/ajax/info@facila.tech", {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                form.classList.add("hidden");
+                document.getElementById("formSuccess").classList.remove("hidden");
+            } else {
+                form.classList.add("hidden");
+                document.getElementById("formError").classList.remove("hidden");
+            }
+        })
+        .catch(() => {
+            form.classList.add("hidden");
+            document.getElementById("formError").classList.remove("hidden");
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.textContent = t.form_submit;
+        });
     });
     </script>
 

@@ -49,8 +49,7 @@
     <style>
         /* Language switcher dropdown */
         .lang-dropdown { display: none; }
-        .lang-wrapper:hover .lang-dropdown,
-        .lang-wrapper:focus-within .lang-dropdown { display: block; }
+        .lang-dropdown.open { display: block; }
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-gray-50">
@@ -73,18 +72,18 @@
                     
                     <!-- Language Switcher -->
                     <div class="lang-wrapper relative">
-                        <button id="langBtn" class="flex items-center gap-1.5 text-gray-500 hover:text-brand-600 font-medium transition px-2 py-1 rounded-md hover:bg-gray-50" aria-label="Change language">
+                        <button class="lang-toggle flex items-center gap-1.5 text-gray-500 hover:text-brand-600 font-medium transition px-2 py-1 rounded-md hover:bg-gray-50" aria-label="Change language">
                             <i class="fa-solid fa-globe text-sm"></i>
                             <span id="currentLangLabel">IT</span>
                             <i class="fa-solid fa-chevron-down text-[10px]"></i>
                         </button>
                         <div class="lang-dropdown absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[140px] z-50">
-                            <button onclick="setLang('de')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
-                            <button onclick="setLang('en')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
-                            <button onclick="setLang('es')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
-                            <button onclick="setLang('fr')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
-                            <button onclick="setLang('it')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
-                            <button onclick="setLang('pt')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
+                            <button data-lang="de" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
+                            <button data-lang="en" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
+                            <button data-lang="es" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
+                            <button data-lang="fr" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
+                            <button data-lang="it" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
+                            <button data-lang="pt" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
                         </div>
                     </div>
                 </div>
@@ -92,17 +91,17 @@
                 <!-- Mobile: lang + hamburger -->
                 <div class="flex md:hidden items-center gap-3">
                     <div class="lang-wrapper relative">
-                        <button class="flex items-center gap-1 text-gray-500 hover:text-brand-600 font-medium transition px-2 py-1 rounded-md" aria-label="Change language">
+                        <button class="lang-toggle flex items-center gap-1 text-gray-500 hover:text-brand-600 font-medium transition px-2 py-1 rounded-md" aria-label="Change language">
                             <i class="fa-solid fa-globe text-sm"></i>
                             <span id="currentLangLabelMobile">IT</span>
                         </button>
                         <div class="lang-dropdown absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[140px] z-50">
-                            <button onclick="setLang('de')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
-                            <button onclick="setLang('en')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
-                            <button onclick="setLang('es')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
-                            <button onclick="setLang('fr')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
-                            <button onclick="setLang('it')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
-                            <button onclick="setLang('pt')" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
+                            <button data-lang="de" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇩🇪 Deutsch</button>
+                            <button data-lang="en" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇬🇧 English</button>
+                            <button data-lang="es" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇪🇸 Español</button>
+                            <button data-lang="fr" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇫🇷 Français</button>
+                            <button data-lang="it" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇮🇹 Italiano</button>
+                            <button data-lang="pt" class="lang-option w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition flex items-center gap-2">🇵🇹 Português</button>
                         </div>
                     </div>
                 </div>
@@ -711,6 +710,39 @@
         };
         document.title = titles[lang] || titles.en;
     }
+
+    // ===== Language dropdown: click to open/close =====
+    document.querySelectorAll('.lang-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var dropdown = this.parentElement.querySelector('.lang-dropdown');
+            // Close all other dropdowns first
+            document.querySelectorAll('.lang-dropdown').forEach(function(d) {
+                if (d !== dropdown) d.classList.remove('open');
+            });
+            dropdown.classList.toggle('open');
+        });
+    });
+
+    // Language option buttons
+    document.querySelectorAll('.lang-option').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var lang = this.getAttribute('data-lang');
+            if (lang) setLang(lang);
+            // Close all dropdowns
+            document.querySelectorAll('.lang-dropdown').forEach(function(d) {
+                d.classList.remove('open');
+            });
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.lang-dropdown').forEach(function(d) {
+            d.classList.remove('open');
+        });
+    });
 
     // ===== Form: set _next redirect URL dynamically + detect success =====
     // Set the _next hidden field so Formsubmit redirects back to this page with ?sent=1

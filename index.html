@@ -376,11 +376,137 @@
                     <p class="text-xs text-gray-400 mt-0.5">INRIA, STARS team</p>
                 </div>
             </div>
-            <!-- Event photo -->
-            <div class="mt-16 rounded-2xl overflow-hidden shadow-xl border-4 border-white max-w-3xl mx-auto">
-                <img src="images/team_event.jpg" alt="Facila team at SophI.A Summit" class="w-full h-64 object-cover" onerror="this.parentElement.style.display='none'">
+        </div>
+    </section>
+
+    <!-- ========== PHOTO GALLERY CAROUSEL ========== -->
+    <section class="py-20 bg-white overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-block bg-brand-100 text-brand-600 px-3 py-1 rounded-full text-sm font-semibold mb-4" data-i18n="gallery_badge">On the Road</div>
+                <h2 class="text-3xl font-bold text-brand-900 mb-3" data-i18n="gallery_title">Facila in Action</h2>
             </div>
-            <p class="text-center text-xs text-gray-400 mt-3 max-w-3xl mx-auto" data-i18n="team_photo_caption">Facila team presenting at the SophI.A Summit, Sophia Antipolis</p>
+
+            <div class="relative">
+                <!-- Carousel container -->
+                <div class="overflow-hidden rounded-2xl border-4 border-white shadow-2xl">
+                    <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
+                        <!-- Slide 1 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_sophia_award.jpg" alt="SophIA Award 2025" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-yellow-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-trophy text-[10px]"></i> Award</span>
+                                    <span class="text-white/60 text-xs">2025</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">SophIA Award — SophI.A Summit</h3>
+                                <p class="text-white/70 text-sm mt-1">Won for AI-powered platform for orofacial analysis, Sophia Antipolis</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_jso.jpg" alt="5th JSO Conference" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-microphone text-[10px]"></i> Conference</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">5th Journées Scientifiques de l'Orthophonie (JSO)</h3>
+                                <p class="text-white/70 text-sm mt-1">Presenting clinical applications of AI biofeedback in speech therapy</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_neurips.jpg" alt="NeurIPS Conference" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-purple-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-book text-[10px]"></i> Publication</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">NeurIPS — StressID Paper Presentation</h3>
+                                <p class="text-white/70 text-sm mt-1">Valeriya presenting StressID research as part of her PhD at Inria</p>
+                            </div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_nice_metropole.jpg" alt="Prix Nice Métropole" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-yellow-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-trophy text-[10px]"></i> Award</span>
+                                    <span class="text-white/60 text-xs">2025</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">Prix Entrepreneuriat dans la Recherche — Nice Métropole</h3>
+                                <p class="text-white/70 text-sm mt-1">Recognized for innovation at the intersection of AI and healthcare</p>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_pompidou.jpg" alt="Institut Claude Pompidou" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-microphone text-[10px]"></i> Presentation</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">Institut Claude Pompidou, Nice</h3>
+                                <p class="text-white/70 text-sm mt-1">Valeriya & Colomba Viscardi presenting Facila's clinical biofeedback approach</p>
+                            </div>
+                        </div>
+                        <!-- Slide 6 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_pepite.jpg" alt="Prix Pépite Méditerranée" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-yellow-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-trophy text-[10px]"></i> Award</span>
+                                    <span class="text-white/60 text-xs">2025</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">Prix Pépite Méditerranée — Entreprise Innovante</h3>
+                                <p class="text-white/70 text-sm mt-1">Awarded to Facila, co-founded by Valeriya Strizhkova and Wenxin Xiong</p>
+                            </div>
+                        </div>
+                        <!-- Slide 7 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_fondation_uca.jpg" alt="Fondation UCA" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-yellow-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-award text-[10px]"></i> Recognition</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">Prix de la Fondation Université Côte d'Azur</h3>
+                                <p class="text-white/70 text-sm mt-1">Valeriya & Wenxin celebrated for student excellence and entrepreneurial impact, Campus Méliès, Cannes</p>
+                            </div>
+                        </div>
+                        <!-- Slide 8 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_epfl.jpg" alt="EPFL Startup Day" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-microphone text-[10px]"></i> Startup Event</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">Forum EPFL Start-Up Day 2025</h3>
+                                <p class="text-white/70 text-sm mt-1">Pitching Facila and meeting researchers, entrepreneurs and industry professionals</p>
+                            </div>
+                        </div>
+                        <!-- Slide 9 -->
+                        <div class="w-full flex-shrink-0 relative">
+                            <img src="images/event_vivatech.jpg" alt="Viva Technology" class="w-full h-[420px] object-cover" onerror="this.src='';this.parentElement.classList.add('bg-gradient-to-br','from-brand-100','to-brand-200');this.style.display='none'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-microphone text-[10px]"></i> Tech Event</span>
+                                </div>
+                                <h3 class="text-white font-bold text-lg">Viva Technology 2025 — Inria Startup Studio Stand</h3>
+                                <p class="text-white/70 text-sm mt-1">Presenting Facila as part of the Inria Startup Studio space at Europe's biggest tech event</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation buttons -->
+                <button id="carPrev" class="absolute left-2 sm:-left-5 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center text-brand-900 hover:text-brand-600 transition z-20 border border-gray-200">
+                    <i class="fa-solid fa-chevron-left text-lg"></i>
+                </button>
+                <button id="carNext" class="absolute right-2 sm:-right-5 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center text-brand-900 hover:text-brand-600 transition z-20 border border-gray-200">
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
+
+                <!-- Dots -->
+                <div class="flex justify-center gap-2 mt-6" id="carDots"></div>
+            </div>
         </div>
     </section>
 
@@ -754,6 +880,54 @@ document.getElementById("sendBtn").addEventListener("click", function(){
     var subj = encodeURIComponent(t.mail_subject);
     var body = encodeURIComponent(t.mail_lbl_name+": "+n+"\n"+t.mail_lbl_email+": "+e+"\n"+t.mail_lbl_org+": "+o);
     window.location.href = "mailto:info@facila.tech?subject="+subj+"&body="+body;
+});
+
+// ========== CAROUSEL ==========
+var carEl = document.getElementById('carousel');
+var slides = carEl.children;
+var totalSlides = slides.length;
+var curSlide = 0;
+var dotsBox = document.getElementById('carDots');
+
+for (var d = 0; d < totalSlides; d++) {
+    var dot = document.createElement('button');
+    dot.className = 'w-2.5 h-2.5 rounded-full transition-all duration-300';
+    dot.setAttribute('data-slide', d);
+    dot.addEventListener('click', function(){ goSlide(parseInt(this.getAttribute('data-slide'))); });
+    dotsBox.appendChild(dot);
+}
+updateDots();
+
+function goSlide(n) {
+    curSlide = n;
+    if (curSlide < 0) curSlide = totalSlides - 1;
+    if (curSlide >= totalSlides) curSlide = 0;
+    carEl.style.transform = 'translateX(-' + (curSlide * 100) + '%)';
+    updateDots();
+}
+function updateDots() {
+    var dots = dotsBox.children;
+    for (var i = 0; i < dots.length; i++) {
+        if (i === curSlide) {
+            dots[i].className = 'w-8 h-2.5 rounded-full bg-brand-600 transition-all duration-300';
+        } else {
+            dots[i].className = 'w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300';
+        }
+    }
+}
+document.getElementById('carPrev').addEventListener('click', function(){ goSlide(curSlide - 1); });
+document.getElementById('carNext').addEventListener('click', function(){ goSlide(curSlide + 1); });
+
+var touchStartX = 0;
+carEl.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+carEl.addEventListener('touchend', function(e){
+    var diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) { diff > 0 ? goSlide(curSlide + 1) : goSlide(curSlide - 1); }
+}, {passive: true});
+
+document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft') goSlide(curSlide - 1);
+    if (e.key === 'ArrowRight') goSlide(curSlide + 1);
 });
 </script>
 </body>
